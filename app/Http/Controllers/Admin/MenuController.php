@@ -102,4 +102,18 @@ class MenuController extends Controller
 
         return redirect()->route('admin.menu.index')->with('success', 'Menu item deleted!');
     }
+
+    // Toggle menu item status
+    public function toggle($id)
+    {
+        $menuItem = MenuItem::findOrFail($id);
+        
+        // Toggle status
+        $menuItem->status = $menuItem->status === 'active' ? 'inactive' : 'active';
+        $menuItem->save();
+        
+        $message = $menuItem->status === 'active' ? 'Menu item is now available!' : 'Menu item is now unavailable!';
+        
+        return redirect()->back()->with('success', $message);
+    }
 }

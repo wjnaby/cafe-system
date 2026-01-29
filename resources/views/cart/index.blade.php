@@ -74,6 +74,18 @@
                 
                 <form action="{{ route('orders.store') }}" method="POST">
                     @csrf
+                    
+                    <!-- Order Notes Field -->
+                    <div class="mb-4">
+                        <label for="notes" class="block text-sm font-medium text-gray-700 mb-2">
+                            Special Requests (Optional)
+                        </label>
+                        <textarea name="notes" id="notes" rows="3" 
+                            placeholder="E.g., Less sugar, No ice, Extra spicy..."
+                            class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-amber-500 focus:border-amber-500"></textarea>
+                        <p class="mt-1 text-xs text-gray-500">Any special instructions for your order</p>
+                    </div>
+                    
                     <button type="submit" class="w-full bg-amber-500 text-white py-3 rounded-md text-lg font-semibold hover:bg-amber-600 transition">
                         Place Order
                     </button>

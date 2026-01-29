@@ -8,13 +8,25 @@ use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Get all active menu items with their categories
-        $categories = Category::with(['menuItems' => function($query) {
-            $query->where('status', 'active');
-        }])->get();
-
+        $search = $request->get('search');
+        $categoryFilter = $request->get('category');
+        
+        $query = Category::with(['menuItems' => function($q) use ($search) {
+            $q->where('status', 'active');
+            if ($search) {
+                $q->where('name', 'LIKE', "%{$search}%");
+            }
+        }]);
+        
+        // Filter by category if selected
+        if ($categoryFilter) {
+            $query->where('id', $categoryFilter);
+        }
+        
+        $categories = $query->get();
+        
         return view('menu.index', compact('categories'));
     }
 }
