@@ -46,6 +46,16 @@
                 @endforeach
             </div>
             
+            <!-- Show customer notes -->
+            @if($order->notes)
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <h4 class="text-sm font-semibold text-gray-700 mb-2">Customer Notes:</h4>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                        <p class="text-gray-700">{{ $order->notes }}</p>
+                    </div>
+                </div>
+            @endif
+            
             <div class="mt-4 pt-4 border-t border-gray-200">
                 <div class="flex justify-between items-center">
                     <span class="text-lg font-semibold text-gray-900">Total:</span>

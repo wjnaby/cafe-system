@@ -11,12 +11,17 @@ use Illuminate\Support\Facades\DB;
 class OrderController extends Controller
 {
     // Show user's orders
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::where('user_id', Auth::id())
-                       ->with('orderItems.menuItem')
-                       ->orderBy('created_at', 'desc')
-                       ->get();
+        $query = Order::where('user_id', Auth::id())
+                      ->with('orderItems.menuItem');
+        
+        // Filter by status if provided
+        if ($request->has('status')) {
+            $query->where('status', $request->status);
+        }
+        
+        $orders = $query->orderBy('created_at', 'desc')->get();
         
         return view('orders.index', compact('orders'));
     }
@@ -39,11 +44,12 @@ class OrderController extends Controller
         // Use transaction to ensure data integrity
         DB::beginTransaction();
         try {
-            // Create order
+            // Create order with notes
             $order = Order::create([
                 'user_id' => Auth::id(),
                 'total_price' => $total,
                 'status' => 'pending',
+                'notes' => $request->notes,
             ]);
 
             // Create order items

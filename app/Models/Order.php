@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'total_price', 'status'];
+    protected $fillable = ['user_id', 'total_price', 'status', 'notes'];
 
     // Relationship: Order belongs to User
     public function user()

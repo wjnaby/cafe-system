@@ -45,10 +45,14 @@
                             ${{ number_format($item->price, 2) }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                {{ $item->status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                                {{ ucfirst($item->status) }}
-                            </span>
+                            <form action="{{ route('admin.menu.toggle', $item->id) }}" method="POST" class="inline">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="px-3 py-1 text-xs font-semibold rounded-full transition
+                                    {{ $item->status === 'active' ? 'bg-green-100 text-green-800 hover:bg-green-200' : 'bg-red-100 text-red-800 hover:bg-red-200' }}">
+                                    {{ ucfirst($item->status) }}
+                                </button>
+                            </form>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <a href="{{ route('admin.menu.edit', $item->id) }}" class="text-blue-600 hover:text-blue-900 mr-3">Edit</a>

@@ -68,6 +68,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/menu', [AdminMenuController::class, 'store'])->name('menu.store');
     Route::get('/menu/{id}/edit', [AdminMenuController::class, 'edit'])->name('menu.edit');
     Route::put('/menu/{id}', [AdminMenuController::class, 'update'])->name('menu.update');
+    Route::patch('/menu/{id}/toggle', [AdminMenuController::class, 'toggle'])->name('menu.toggle');
     Route::delete('/menu/{id}', [AdminMenuController::class, 'destroy'])->name('menu.destroy');
     
     // Order management
