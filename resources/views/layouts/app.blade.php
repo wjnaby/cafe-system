@@ -6,173 +6,189 @@
     <title>{{ config('app.name', 'Cafe System') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Syne:wght@600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --brown-dark: #3D2314;
+            --brown-medium: #5C3A21;
+            --brown-light: #8B6914;
+            --cream: #FAF7F2;
+            --cream-dark: #F5EFE6;
+            --amber: #D4A574;
+            --amber-dark: #B8956A;
+            --text-dark: #2D1810;
+            --text-muted: #6B5B4F;
+        }
         
         .nav-bar {
-            font-family: 'DM Sans', sans-serif;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(148,163,184,0.15);
-            position: sticky;
+            font-family: 'Poppins', sans-serif;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
         }
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 52px;
+            height: 70px;
         }
         .nav-logo {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.15rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #1e293b;
+            color: var(--brown-dark);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
         .nav-logo span {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--amber-dark);
         }
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 8px;
         }
         .nav-link {
-            padding: 6px 12px;
-            font-size: 0.8rem;
+            padding: 8px 16px;
+            font-size: 0.9rem;
             font-weight: 500;
-            color: #64748b;
+            color: var(--text-muted);
             text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.2s;
+            border-radius: 50px;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
         }
         .nav-link:hover {
-            color: #3b82f6;
-            background: rgba(59,130,246,0.08);
+            color: var(--brown-dark);
+            background: var(--cream-dark);
         }
         .nav-link.active {
-            color: #3b82f6;
-            background: rgba(59,130,246,0.1);
+            color: var(--brown-dark);
+            background: var(--cream);
         }
         .nav-link svg {
-            width: 15px;
-            height: 15px;
+            width: 16px;
+            height: 16px;
         }
         .nav-link .badge {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            color: #fff;
-            font-size: 0.65rem;
+            background: var(--amber);
+            color: var(--brown-dark);
+            font-size: 0.7rem;
             font-weight: 600;
-            padding: 1px 6px;
-            border-radius: 8px;
-            margin-left: 2px;
+            padding: 2px 8px;
+            border-radius: 50px;
+            margin-left: 4px;
         }
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         .nav-user {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 4px 10px 4px 4px;
-            border-radius: 10px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
+            gap: 10px;
+            padding: 6px 14px 6px 6px;
+            border-radius: 50px;
+            background: var(--cream);
+            border: 2px solid var(--cream-dark);
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
         }
         .nav-user:hover {
-            border-color: #93c5fd;
-            background: #eef4ff;
+            border-color: var(--amber);
+            background: var(--cream-dark);
         }
         .nav-avatar {
-            width: 28px;
-            height: 28px;
-            border-radius: 7px;
-            background: linear-gradient(135deg, #dbeafe, #ede9fe);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .nav-avatar span {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.75rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--brown-dark);
         }
         .nav-user-name {
-            font-size: 0.78rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            color: #334155;
+            color: var(--brown-dark);
         }
         .nav-user-role {
-            font-size: 0.65rem;
-            color: #94a3b8;
+            font-size: 0.7rem;
+            color: var(--text-muted);
             text-transform: capitalize;
         }
         .nav-btn {
-            padding: 7px 14px;
-            font-size: 0.78rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 24px;
+            font-size: 0.9rem;
             font-weight: 600;
-            border-radius: 8px;
+            border-radius: 50px;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
         .nav-btn-outline {
-            color: #64748b;
-            border: 1.5px solid #e2e8f0;
-            background: #fff;
+            background: transparent;
+            color: var(--brown-dark);
+            border: 2px solid var(--brown-dark);
         }
         .nav-btn-outline:hover {
-            border-color: #93c5fd;
-            color: #3b82f6;
+            background: var(--brown-dark);
+            color: #fff;
         }
         .nav-btn-primary {
+            background: var(--brown-dark);
             color: #fff;
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            box-shadow: 0 2px 8px rgba(37,99,235,0.25);
+            box-shadow: 0 4px 15px rgba(61, 35, 20, 0.3);
         }
         .nav-btn-primary:hover {
-            box-shadow: 0 4px 12px rgba(37,99,235,0.35);
-            transform: translateY(-1px);
+            background: var(--brown-medium);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(61, 35, 20, 0.4);
         }
         .nav-logout {
-            background: none;
-            border: none;
-            color: #94a3b8;
-            font-size: 0.75rem;
+            background: transparent;
+            border: 2px solid var(--cream-dark);
+            color: var(--text-muted);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
-            padding: 5px 8px;
-            border-radius: 8px;
-            transition: all 0.2s;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
         }
         .nav-logout:hover {
-            color: #ef4444;
-            background: rgba(239,68,68,0.08);
+            color: #dc2626;
+            border-color: #fecaca;
+            background: #fef2f2;
         }
         .nav-divider {
             width: 1px;
-            height: 28px;
-            background: #e2e8f0;
+            height: 32px;
+            background: var(--cream-dark);
             margin: 0 8px;
         }
         
@@ -183,28 +199,47 @@
             border: none;
             padding: 8px;
             cursor: pointer;
-            color: #64748b;
+            color: var(--brown-dark);
         }
         .nav-mobile-toggle svg {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
+        }
+        
+        /* Body padding for fixed navbar */
+        body {
+            padding-top: 70px;
+            background: var(--cream);
         }
         
         @media (max-width: 900px) {
             .nav-links, .nav-divider { display: none; }
             .nav-mobile-toggle { display: block; }
         }
+        
+        @media (max-width: 480px) {
+            .nav-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+            .nav-user-name, .nav-user-role {
+                display: none;
+            }
+            .nav-user {
+                padding: 4px;
+            }
+        }
     </style>
     @yield('styles')
 </head>
-<body class="bg-gray-50">
+<body>
     
     <!-- Navigation Bar -->
     <nav class="nav-bar">
         <div class="nav-container">
             <!-- Logo -->
-            <a href="{{ auth()->check() && auth()->user()->role === 'admin' ? route('admin.dashboard') : route('menu.index') }}" class="nav-logo">
-                ☕ <span>Cafe System</span>
+            <a href="{{ auth()->check() && auth()->user()->role === 'admin' ? route('admin.dashboard') : route('welcome') }}" class="nav-logo">
+                🥐 <span>Cafe System</span>
             </a>
             
             <!-- Navigation Links -->
@@ -227,6 +262,10 @@
                         <a href="{{ route('admin.customers.index') }}" class="nav-link {{ request()->routeIs('admin.customers.*') ? 'active' : '' }}">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                             Customers
+                        </a>
+                        <a href="{{ route('admin.settings.index') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            Settings
                         </a>
                     @else
                         {{-- Customer Navigation --}}
@@ -276,6 +315,15 @@
                     </form>
                 @endguest
             </div>
+            
+            <!-- Mobile Toggle -->
+            <button class="nav-mobile-toggle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
         </div>
     </nav>
 

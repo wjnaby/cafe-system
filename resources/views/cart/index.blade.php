@@ -2,141 +2,183 @@
 
 @section('styles')
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Syne:wght@500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap');
 
     :root {
-        --blue-50:  #eef4ff;
-        --blue-100: #dbeafe;
-        --blue-200: #bfdbfe;
-        --blue-300: #93c5fd;
-        --blue-400: #60a5fa;
-        --blue-500: #3b82f6;
-        --blue-600: #2563eb;
-        --blue-700: #1d4ed8;
-        --sky-100:  #e0f2fe;
-        --sky-400:  #38bdf8;
-        --sky-500:  #0ea5e9;
-        --teal-400: #2dd4bf;
-        --teal-500: #14b8a6;
-        --rose-400: #fb7185;
-        --rose-500: #f43f5e;
-        --slate-50:  #f8fafc;
-        --slate-100: #f1f5f9;
-        --slate-200: #e2e8f0;
-        --slate-300: #cbd5e1;
-        --slate-400: #94a3b8;
-        --slate-500: #64748b;
-        --slate-600: #475569;
-        --slate-700: #334155;
-        --slate-800: #1e293b;
-        --text-primary:   #1e293b;
-        --text-muted:     #94a3b8;
-        --card-bg:        rgba(255,255,255,0.72);
-        --card-border:    rgba(148,163,184,0.18);
-        --card-shadow:    0 1px 3px rgba(30,41,59,0.06), 0 1px 2px rgba(30,41,59,0.04);
-        --card-shadow-hover: 0 8px 24px rgba(37,99,235,0.12), 0 2px 6px rgba(30,41,59,0.06);
-        --radius: 18px;
+        --brown-dark: #3D2314;
+        --brown-medium: #5C3A21;
+        --brown-light: #8B6914;
+        --cream: #F5F0E8;
+        --cream-light: #FAF8F5;
+        --amber: #D4A574;
+        --amber-dark: #B8956A;
+        --text-dark: #2D1810;
+        --text-muted: #6B5B4F;
+        --card-bg: #fff;
+        --border: #E8E2DA;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ── Page Shell ── (identical to dashboard) */
-    .cart-body {
-        font-family: 'DM Sans', system-ui, sans-serif;
+    .cart-page {
+        font-family: 'Outfit', sans-serif;
+        background: var(--cream-light);
         min-height: 100vh;
-        background:
-            radial-gradient(ellipse 80% 60% at 15% 20%, rgba(219,234,254,0.55) 0%, transparent 70%),
-            radial-gradient(ellipse 60% 50% at 80% 70%, rgba(224,242,254,0.45) 0%, transparent 65%),
-            radial-gradient(ellipse 40% 40% at 55% 10%, rgba(191,219,254,0.3) 0%, transparent 60%),
-            linear-gradient(160deg, #eef4ff 0%, #f0f7ff 40%, #eef6ff 100%);
-        color: var(--text-primary);
-        padding: 36px 40px 60px;
+        color: var(--text-dark);
     }
 
-    /* ── Layout ── */
-    .cart-layout {
-        max-width: 960px;
+    /* ─── Grain overlay ─── */
+    .cart-page::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        pointer-events: none;
+        opacity: .035;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ═══════════════════════════════
+       HERO HEADER
+       ═══════════════════════════════ */
+    .cart-hero {
+        background: var(--brown-dark);
+        position: relative;
+        overflow: hidden;
+        padding: 70px 0 60px;
+    }
+
+    /* ambient light blobs */
+    .cart-hero .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        opacity: .18;
+        pointer-events: none;
+    }
+    .cart-hero .blob--1 {
+        width: 420px; height: 420px;
+        background: var(--amber);
+        top: -120px; right: -100px;
+    }
+    .cart-hero .blob--2 {
+        width: 280px; height: 280px;
+        background: var(--brown-medium);
+        bottom: -80px; left: -60px;
+        opacity: .25;
+    }
+
+    .hero-inner {
+        max-width: 900px;
         margin: 0 auto;
+        padding: 0 32px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1;
     }
 
-    /* ── Header ── */
-    .cart-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        margin-bottom: 32px;
-    }
-    .cart-header h1 {
-        font-family: 'Syne', sans-serif;
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--slate-800);
-        letter-spacing: -0.03em;
-    }
-    .cart-header p {
-        color: var(--text-muted);
-        font-size: 0.95rem;
-        margin-top: 4px;
-    }
-    .btn {
+    /* Tag */
+    .hero-tag {
         display: inline-flex;
         align-items: center;
-        gap: 7px;
-        padding: 9px 18px;
-        border-radius: 10px;
-        font-size: 0.82rem;
-        font-weight: 600;
-        cursor: pointer;
-        border: none;
-        transition: all 0.2s;
+        gap: 10px;
+        margin-bottom: 18px;
+    }
+    .hero-tag__line {
+        width: 32px;
+        height: 1px;
+        background: var(--amber);
+    }
+    .hero-tag__text {
+        font-size: .78rem;
+        font-weight: 500;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--amber);
+    }
+
+    .hero-content h1 {
+        font-family: 'DM Serif Display', serif;
+        font-size: clamp(2.2rem, 5vw, 3.2rem);
+        font-weight: 400;
+        color: #fff;
+        line-height: 1.1;
+        margin-bottom: 10px;
+    }
+    .hero-content h1 em {
+        font-style: italic;
+        color: var(--amber);
+    }
+
+    .hero-content p {
+        font-size: .95rem;
+        color: rgba(255,255,255,.5);
+        font-weight: 300;
+    }
+
+    /* Back to menu link */
+    .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255,255,255,.7);
         text-decoration: none;
-        letter-spacing: 0.01em;
-        font-family: inherit;
+        font-weight: 400;
+        font-size: .88rem;
+        padding: 12px 22px;
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: 10px;
+        transition: all .3s ease;
+        background: rgba(255,255,255,.04);
     }
-    .btn-outline {
-        background: var(--card-bg);
-        border: 1.5px solid var(--card-border);
-        color: var(--slate-600);
-        backdrop-filter: blur(8px);
+    .btn-back:hover {
+        background: rgba(255,255,255,.1);
+        border-color: rgba(255,255,255,.25);
+        color: #fff;
     }
-    .btn-outline:hover { border-color: var(--blue-300); color: var(--blue-600); background: #fff; }
-    .btn svg { width: 15px; height: 15px; }
+    .btn-back svg { width: 16px; height: 16px; }
 
-    /* ── Panel (glass card) ── */
-    .panel {
+    /* ═══════════════════════════════
+       CART BODY
+       ═══════════════════════════════ */
+    .cart-body {
+        max-width: 900px;
+        margin: -28px auto 80px;
+        padding: 0 32px;
+        position: relative;
+        z-index: 10;
+    }
+
+    /* ─── Cart Panel ─── */
+    .cart-panel {
         background: var(--card-bg);
-        backdrop-filter: blur(14px);
-        border: 1px solid var(--card-border);
-        border-radius: var(--radius);
-        box-shadow: var(--card-shadow);
+        border-radius: 18px;
+        box-shadow: 0 8px 40px rgba(61,35,20,.1);
         overflow: hidden;
-        animation: fadeUp 0.4s ease both;
-    }
-    @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(18px); }
-        to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── Cart Item Row ── */
+    /* ─── Cart Item Row ─── */
     .cart-item {
         display: flex;
         align-items: center;
-        gap: 18px;
-        padding: 20px 24px;
-        border-bottom: 1px solid var(--slate-100);
-        transition: background 0.15s;
+        gap: 20px;
+        padding: 22px 28px;
+        border-bottom: 1px solid var(--border);
+        transition: background .2s ease;
     }
-    .cart-item:last-child { border-bottom: none; }
-    .cart-item:hover { background: rgba(59,130,246,0.03); }
+    .cart-item:last-of-type { border-bottom: none; }
+    .cart-item:hover { background: rgba(245,240,232,.5); }
 
     /* Thumbnail */
     .cart-thumb {
         flex-shrink: 0;
-        width: 72px;
-        height: 72px;
+        width: 80px;
+        height: 80px;
         border-radius: 14px;
-        background: linear-gradient(135deg, var(--blue-50), var(--sky-100));
-        border: 1px solid var(--blue-100);
+        background: linear-gradient(140deg, var(--cream) 0%, #E4DCD0 100%);
+        border: 1px solid var(--border);
         overflow: hidden;
         display: flex;
         align-items: center;
@@ -147,63 +189,67 @@
         height: 100%;
         object-fit: cover;
     }
-    .cart-thumb .placeholder-icon {
-        font-size: 1.6rem;
+    .cart-thumb svg {
+        width: 32px;
+        height: 32px;
+        opacity: .35;
+        color: var(--brown-medium);
     }
 
     /* Name + price */
     .cart-info { flex: 1; min-width: 0; }
     .cart-info h3 {
-        font-family: 'Syne', sans-serif;
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: var(--slate-800);
+        font-family: 'DM Serif Display', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: var(--text-dark);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        margin-bottom: 4px;
     }
     .cart-info p {
-        font-size: 0.8rem;
+        font-size: .84rem;
         color: var(--text-muted);
-        margin-top: 3px;
+        font-weight: 300;
     }
 
     /* Qty stepper */
     .qty-stepper {
         display: flex;
         align-items: center;
-        gap: 0;
-        border: 1.5px solid var(--slate-200);
+        border: 1px solid var(--border);
         border-radius: 10px;
         overflow: hidden;
         flex-shrink: 0;
+        background: var(--cream-light);
     }
     .qty-btn {
-        width: 34px;
-        height: 36px;
+        width: 38px;
+        height: 40px;
         border: none;
-        background: var(--slate-50);
-        color: var(--slate-600);
-        font-size: 1.1rem;
+        background: transparent;
+        color: var(--text-muted);
+        font-size: 1.15rem;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: background 0.15s, color 0.15s;
+        transition: background .2s, color .2s;
         font-family: inherit;
     }
-    .qty-btn:hover { background: var(--blue-50); color: var(--blue-600); }
+    .qty-btn:hover { background: var(--cream); color: var(--brown-dark); }
     .qty-val {
-        width: 38px;
-        height: 36px;
+        width: 44px;
+        height: 40px;
         border: none;
-        border-left: 1px solid var(--slate-200);
-        border-right: 1px solid var(--slate-200);
+        border-left: 1px solid var(--border);
+        border-right: 1px solid var(--border);
         text-align: center;
-        font-size: 0.88rem;
+        font-size: .92rem;
         font-weight: 600;
-        color: var(--slate-800);
-        background: #fff;
+        color: var(--text-dark);
+        background: var(--card-bg);
         font-family: inherit;
     }
     .qty-val:focus { outline: none; }
@@ -211,78 +257,79 @@
     /* Subtotal */
     .cart-subtotal {
         flex-shrink: 0;
-        min-width: 72px;
+        min-width: 80px;
         text-align: right;
     }
     .cart-subtotal span {
-        font-family: 'Syne', sans-serif;
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--slate-800);
+        font-family: 'DM Serif Display', serif;
+        font-size: 1.15rem;
+        font-weight: 400;
+        color: var(--brown-dark);
     }
 
     /* Remove btn */
     .remove-btn {
         flex-shrink: 0;
-        width: 34px;
-        height: 34px;
-        border: 1.5px solid transparent;
-        border-radius: 9px;
+        width: 38px;
+        height: 38px;
+        border: 1px solid transparent;
+        border-radius: 10px;
         background: transparent;
-        color: var(--slate-300);
+        color: var(--border);
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.18s;
+        transition: all .2s ease;
     }
     .remove-btn:hover {
         background: #fef2f2;
         border-color: #fecaca;
-        color: var(--rose-500);
+        color: #ef4444;
     }
-    .remove-btn svg { width: 17px; height: 17px; }
+    .remove-btn svg { width: 18px; height: 18px; }
 
-    /* ── Summary Footer ── */
+    /* ─── Summary Footer ─── */
     .cart-summary {
-        background: var(--slate-50);
-        border-top: 1px solid var(--slate-100);
-        padding: 24px;
+        background: var(--cream);
+        border-top: 1px solid var(--border);
+        padding: 28px;
     }
 
     /* Notes */
     .notes-label {
-        font-size: 0.78rem;
+        font-size: .76rem;
         font-weight: 600;
-        color: var(--slate-600);
+        color: var(--text-muted);
         text-transform: uppercase;
-        letter-spacing: 0.06em;
-        margin-bottom: 8px;
+        letter-spacing: .1em;
+        margin-bottom: 10px;
         display: block;
     }
     .notes-textarea {
         width: 100%;
-        border: 1.5px solid var(--slate-200);
+        border: 1px solid var(--border);
         border-radius: 12px;
-        padding: 12px 14px;
-        font-size: 0.84rem;
-        color: var(--slate-700);
-        font-family: inherit;
+        padding: 14px 16px;
+        font-size: .88rem;
+        color: var(--text-dark);
+        font-family: 'Outfit', sans-serif;
         resize: vertical;
-        min-height: 76px;
-        background: #fff;
-        transition: border-color 0.2s, box-shadow 0.2s;
+        min-height: 90px;
+        background: var(--card-bg);
+        transition: border-color .25s, box-shadow .25s;
     }
-    .notes-textarea::placeholder { color: var(--slate-400); }
+    .notes-textarea::placeholder { color: #a89d95; }
     .notes-textarea:focus {
         outline: none;
-        border-color: var(--blue-300);
-        box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+        border-color: var(--amber);
+        box-shadow: 0 0 0 3px rgba(212,165,116,.15);
     }
     .notes-hint {
-        font-size: 0.74rem;
+        font-size: .76rem;
         color: var(--text-muted);
-        margin-top: 6px;
+        margin-top: 8px;
+        font-weight: 300;
     }
 
     /* Total row */
@@ -290,234 +337,277 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 20px 0 18px;
-        padding-top: 18px;
-        border-top: 1px solid var(--slate-200);
+        margin: 24px 0 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
     }
     .total-row .label {
-        font-size: 0.78rem;
+        font-size: .78rem;
         font-weight: 600;
-        color: var(--slate-500);
+        color: var(--text-muted);
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: .1em;
     }
     .total-row .amount {
-        font-family: 'Syne', sans-serif;
-        font-size: 1.7rem;
-        font-weight: 700;
-        color: var(--slate-800);
+        font-family: 'DM Serif Display', serif;
+        font-size: 2rem;
+        color: var(--brown-dark);
         letter-spacing: -0.02em;
     }
 
     /* Place Order */
     .btn-place-order {
         width: 100%;
-        padding: 14px;
+        padding: 16px;
         border: none;
         border-radius: 12px;
-        background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
+        background: var(--brown-dark);
         color: #fff;
-        font-family: 'Syne', sans-serif;
-        font-size: 1rem;
-        font-weight: 600;
-        letter-spacing: 0.02em;
+        font-family: 'Outfit', sans-serif;
+        font-size: .95rem;
+        font-weight: 500;
+        letter-spacing: .02em;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
-        box-shadow: 0 3px 12px rgba(37,99,235,0.28);
-        transition: box-shadow 0.2s, transform 0.2s;
+        gap: 10px;
+        transition: background .25s, transform .15s;
     }
     .btn-place-order:hover {
-        box-shadow: 0 5px 20px rgba(37,99,235,0.38);
-        transform: translateY(-1px);
+        background: var(--brown-medium);
+        transform: translateY(-2px);
     }
     .btn-place-order svg { width: 18px; height: 18px; }
 
-    /* ── Empty State ── */
+    /* ─── Empty State ─── */
     .empty-panel {
         background: var(--card-bg);
-        backdrop-filter: blur(14px);
-        border: 1px solid var(--card-border);
-        border-radius: var(--radius);
-        box-shadow: var(--card-shadow);
-        padding: 72px 24px;
+        border-radius: 18px;
+        box-shadow: 0 8px 40px rgba(61,35,20,.1);
+        padding: 80px 32px;
         text-align: center;
-        animation: fadeUp 0.4s ease both;
     }
     .empty-icon-wrap {
-        width: 80px;
-        height: 80px;
-        border-radius: 24px;
-        background: linear-gradient(135deg, var(--blue-50), var(--sky-100));
-        border: 1px solid var(--blue-100);
-        margin: 0 auto 20px;
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: linear-gradient(140deg, var(--cream) 0%, #E4DCD0 100%);
+        border: 1px solid var(--border);
+        margin: 0 auto 24px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    .empty-icon-wrap svg { width: 36px; height: 36px; color: var(--blue-400); }
+    .empty-icon-wrap svg { width: 40px; height: 40px; color: var(--amber-dark); }
     .empty-panel h2 {
-        font-family: 'Syne', sans-serif;
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: var(--slate-800);
-        margin-bottom: 6px;
+        font-family: 'DM Serif Display', serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: var(--text-dark);
+        margin-bottom: 8px;
     }
     .empty-panel p {
-        font-size: 0.88rem;
+        font-size: .92rem;
         color: var(--text-muted);
-        margin-bottom: 24px;
+        margin-bottom: 28px;
+        font-weight: 300;
     }
     .btn-browse {
         display: inline-flex;
         align-items: center;
-        gap: 7px;
-        padding: 11px 24px;
+        gap: 10px;
+        padding: 14px 28px;
         border-radius: 10px;
-        background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
+        background: var(--brown-dark);
         color: #fff;
-        font-size: 0.88rem;
-        font-weight: 600;
+        font-size: .9rem;
+        font-weight: 500;
         text-decoration: none;
-        box-shadow: 0 3px 12px rgba(37,99,235,0.28);
-        transition: box-shadow 0.2s, transform 0.2s;
-        font-family: inherit;
+        transition: background .25s, transform .15s;
+        font-family: 'Outfit', sans-serif;
     }
     .btn-browse:hover {
-        box-shadow: 0 5px 18px rgba(37,99,235,0.38);
-        transform: translateY(-1px);
+        background: var(--brown-medium);
+        transform: translateY(-2px);
     }
-    .btn-browse svg { width: 15px; height: 15px; }
+    .btn-browse svg { width: 16px; height: 16px; }
 
-    /* ── Responsive ── */
-    @media (max-width: 640px) {
-        .cart-body { padding: 24px 16px 48px; }
-        .cart-item { padding: 16px; gap: 12px; }
-        .cart-thumb { width: 58px; height: 58px; }
-        .qty-btn { width: 28px; height: 32px; }
-        .qty-val { width: 32px; height: 32px; font-size: 0.82rem; }
-        .cart-summary { padding: 18px; }
-        .cart-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+    /* ─── Decorative element ─── */
+    .cart-decor {
+        text-align: center;
+        margin-top: 48px;
+        opacity: .3;
+    }
+    .cart-decor svg {
+        width: 48px;
+        height: 48px;
+        color: var(--amber-dark);
+    }
+
+    /* ═══════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════ */
+    @media (max-width: 700px) {
+        .cart-hero { padding: 50px 0 40px; }
+        .hero-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
+        .hero-content h1 { font-size: 2rem; }
+        .cart-body { padding: 0 20px; margin-top: -20px; }
+        .cart-item { padding: 18px 20px; gap: 14px; flex-wrap: wrap; }
+        .cart-thumb { width: 64px; height: 64px; }
+        .cart-info { flex: 1 1 calc(100% - 84px); }
+        .qty-stepper { order: 5; }
+        .cart-subtotal { order: 6; min-width: 60px; }
+        .remove-btn { order: 4; margin-left: auto; }
+        .cart-summary { padding: 22px 20px; }
+        .total-row .amount { font-size: 1.65rem; }
+    }
+
+    @media (max-width: 480px) {
+        .hero-inner { padding: 0 20px; }
+        .qty-btn { width: 32px; height: 36px; }
+        .qty-val { width: 38px; height: 36px; font-size: .85rem; }
     }
 </style>
 @endsection
 
 @section('content')
-<div class="cart-body">
-<div class="cart-layout">
+<div class="cart-page">
 
-    <!-- ── Header ── -->
-    <div class="cart-header">
-        <div>
-            <h1>Shopping Cart</h1>
-            <p>{{ empty($cart) ? 'Nothing here yet' : count($cart) . ' item' . (count($cart) > 1 ? 's' : '') . ' in your cart' }}</p>
+    <!-- ── Hero Header ── -->
+    <section class="cart-hero">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="hero-tag">
+                    <span class="hero-tag__line"></span>
+                    <span class="hero-tag__text">Your Selection</span>
+                </div>
+                <h1>Shopping <em>Cart</em></h1>
+                <p>{{ empty($cart) ? 'Your cart is waiting to be filled' : count($cart) . ' item' . (count($cart) > 1 ? 's' : '') . ' ready to order' }}</p>
+            </div>
+
+            <a href="{{ route('menu.index') }}" class="btn-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Continue Shopping
+            </a>
         </div>
-        <a href="{{ route('menu.index') }}" class="btn btn-outline">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><path d="M12 19l-7-7 7-7"/></svg>
-            Continue Shopping
-        </a>
-    </div>
+    </section>
 
-    <!-- ── Empty State ── -->
-    @if(empty($cart))
-    <div class="empty-panel">
-        <div class="empty-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-                <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
-            </svg>
+    <!-- ── Cart Body ── -->
+    <div class="cart-body">
+
+        <!-- ── Empty State ── -->
+        @if(empty($cart))
+        <div class="empty-panel">
+            <div class="empty-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+                </svg>
+            </div>
+            <h2>Your cart is empty</h2>
+            <p>Discover our handcrafted selection and add your favorites.</p>
+            <a href="{{ route('menu.index') }}" class="btn-browse">
+                Browse Menu
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
         </div>
-        <h2>Your cart is empty</h2>
-        <p>Add some items from our menu to get started.</p>
-        <a href="{{ route('menu.index') }}" class="btn-browse">
-            Browse Menu
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><path d="M12 5l7 7-7 7"/></svg>
-        </a>
-    </div>
 
-    <!-- ── Cart with Items ── -->
-    @else
-    <div class="panel">
+        <!-- ── Cart with Items ── -->
+        @else
+        <div class="cart-panel">
 
-        <!-- Item Rows -->
-        @foreach($cart as $id => $item)
-        <div class="cart-item">
+            <!-- Item Rows -->
+            @foreach($cart as $id => $item)
+            <div class="cart-item">
 
-            <!-- Thumbnail -->
-            <div class="cart-thumb">
-                @if(isset($item['image']) && $item['image'])
-                    <img src="{{ asset('images/menu/'.$item['image']) }}" alt="{{ $item['name'] }}">
-                @else
-                    <span class="placeholder-icon">☕</span>
-                @endif
-            </div>
-
-            <!-- Name / Price -->
-            <div class="cart-info">
-                <h3>{{ $item['name'] }}</h3>
-                <p>${{ number_format($item['price'], 2) }} each</p>
-            </div>
-
-            <!-- Qty Stepper -->
-            <div class="qty-stepper">
-                <form action="{{ route('cart.update', $id) }}" method="POST" style="display:contents;">
-                    @csrf
-                    @method('PATCH')
-                    <input type="hidden" name="quantity" id="qty-hidden-{{ $id }}" value="{{ $item['quantity'] }}">
-                </form>
-                <button type="button" class="qty-btn" onclick="changeQty('{{ $id }}', -1)">−</button>
-                <span class="qty-val" id="qty-display-{{ $id }}">{{ $item['quantity'] }}</span>
-                <button type="button" class="qty-btn" onclick="changeQty('{{ $id }}', 1)">+</button>
-            </div>
-
-            <!-- Subtotal -->
-            <div class="cart-subtotal">
-                <span id="subtotal-{{ $id }}">${{ number_format($item['price'] * $item['quantity'], 2) }}</span>
-            </div>
-
-            <!-- Remove -->
-            <form action="{{ route('cart.remove', $id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="remove-btn" title="Remove item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>
-                    </svg>
-                </button>
-            </form>
-        </div>
-        @endforeach
-
-        <!-- ── Summary Footer ── -->
-        <div class="cart-summary">
-
-            <!-- Notes -->
-            <form action="{{ route('orders.store') }}" method="POST">
-                @csrf
-                <label class="notes-label" for="notes">Special Requests</label>
-                <textarea name="notes" id="notes" rows="3" class="notes-textarea" placeholder="E.g., Less sugar, No ice, Extra spicy…"></textarea>
-                <p class="notes-hint">Any special instructions for your order</p>
-
-                <!-- Total -->
-                <div class="total-row">
-                    <span class="label">Total</span>
-                    <span class="amount">${{ number_format($total, 2) }}</span>
+                <!-- Thumbnail -->
+                <div class="cart-thumb">
+                    @if(isset($item['image']) && $item['image'])
+                        <img src="{{ asset('images/menu/'.$item['image']) }}" alt="{{ $item['name'] }}">
+                    @else
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 8h1a4 4 0 110 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/>
+                            <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/>
+                        </svg>
+                    @endif
                 </div>
 
-                <!-- Place Order -->
-                <button type="submit" class="btn-place-order">
-                    Place Order
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                </button>
-            </form>
-        </div>
-    </div>
-    @endif
+                <!-- Name / Price -->
+                <div class="cart-info">
+                    <h3>{{ $item['name'] }}</h3>
+                    <p>${{ number_format($item['price'], 2) }} each</p>
+                </div>
 
-</div><!-- .cart-layout -->
-</div><!-- .cart-body -->
+                <!-- Qty Stepper -->
+                <div class="qty-stepper">
+                    <form action="{{ route('cart.update', $id) }}" method="POST" style="display:contents;">
+                        @csrf
+                        @method('PATCH')
+                        <input type="hidden" name="quantity" id="qty-hidden-{{ $id }}" value="{{ $item['quantity'] }}">
+                    </form>
+                    <button type="button" class="qty-btn" onclick="changeQty('{{ $id }}', -1)">−</button>
+                    <span class="qty-val" id="qty-display-{{ $id }}">{{ $item['quantity'] }}</span>
+                    <button type="button" class="qty-btn" onclick="changeQty('{{ $id }}', 1)">+</button>
+                </div>
+
+                <!-- Subtotal -->
+                <div class="cart-subtotal">
+                    <span id="subtotal-{{ $id }}">${{ number_format($item['price'] * $item['quantity'], 2) }}</span>
+                </div>
+
+                <!-- Remove -->
+                <form action="{{ route('cart.remove', $id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="remove-btn" title="Remove item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            @endforeach
+
+            <!-- ── Summary Footer ── -->
+            <div class="cart-summary">
+
+                <!-- Notes -->
+                <form action="{{ route('orders.store') }}" method="POST">
+                    @csrf
+                    <label class="notes-label" for="notes">Special Requests</label>
+                    <textarea name="notes" id="notes" rows="3" class="notes-textarea" placeholder="E.g., Less sugar, No ice, Extra hot…"></textarea>
+                    <p class="notes-hint">Let us know about any special instructions for your order</p>
+
+                    <!-- Total -->
+                    <div class="total-row">
+                        <span class="label">Order Total</span>
+                        <span class="amount">${{ number_format($total, 2) }}</span>
+                    </div>
+
+                    <!-- Place Order -->
+                    <button type="submit" class="btn-place-order">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                        Place Order
+                    </button>
+                </form>
+            </div>
+        </div>
+        @endif
+
+        <!-- Decorative -->
+        <div class="cart-decor">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 8h1a4 4 0 110 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/>
+                <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
+        </div>
+
+    </div><!-- .cart-body -->
+</div><!-- .cart-page -->
 @endsection
 
 @section('scripts')
