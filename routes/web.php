@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\MenuController as AdminMenuController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,6 +71,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::put('/menu/{id}', [AdminMenuController::class, 'update'])->name('menu.update');
     Route::patch('/menu/{id}/toggle', [AdminMenuController::class, 'toggle'])->name('menu.toggle');
     Route::delete('/menu/{id}', [AdminMenuController::class, 'destroy'])->name('menu.destroy');
+    
+    // Category management
+    Route::post('/categories', [AdminCategoryController::class, 'store'])->name('categories.store');
+    Route::delete('/categories/{id}', [AdminCategoryController::class, 'destroy'])->name('categories.destroy');
     
     // Order management
     Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
