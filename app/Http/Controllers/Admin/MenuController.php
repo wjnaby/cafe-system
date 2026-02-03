@@ -13,7 +13,8 @@ class MenuController extends Controller
     public function index()
     {
         $menuItems = MenuItem::with('category')->get();
-        return view('admin.menu.index', compact('menuItems'));
+        $categories = Category::with('menuItems')->get();
+        return view('admin.menu.index', compact('menuItems', 'categories'));
     }
 
     // Show create form
