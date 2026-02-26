@@ -7,7 +7,8 @@ FROM node:20-alpine AS vite
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
-RUN npm ci --omit=dev
+# Install all deps (including dev) so Vite can build; we only copy public/build to the final image
+RUN npm ci
 
 COPY vite.config.js tailwind.config.js postcss.config.js ./
 COPY resources ./resources
