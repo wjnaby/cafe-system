@@ -1,0 +1,45 @@
+# Render Blueprint: Laravel 12 + PostgreSQL
+# https://render.com/docs/blueprint-spec
+# Create a PostgreSQL database first in Dashboard, then use its Internal URL below.
+
+services:
+  - type: web
+    name: cafe-system
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+
+    # Render free tier: 512MB RAM, sleep after inactivity
+    plan: free
+
+    # Env vars: set these in Render Dashboard (Environment) or here for reference.
+    # Never commit real secrets. Use Render's Secret Files or Environment for production.
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "0"
+      - key: APP_URL
+        sync: false  # Set to your Render URL, e.g. https://cafe-system.onrender.com
+      - key: ASSET_URL
+        sync: false  # Set to same as APP_URL so Vite assets use HTTPS
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DATABASE_URL
+        fromDatabase:
+          name: cafe-system-db  # Match your PostgreSQL service name
+          property: connectionString
+      - key: CACHE_STORE
+        value: database
+      - key: SESSION_DRIVER
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
+      # Set in Dashboard: run locally `php artisan key:generate --show` and paste value
+      # - key: APP_KEY
+      #   sync: false
+
+databases:
+  - name: cafe-system-db
+    plan: free
+    databaseName: cafe_system
+    user: cafe_system

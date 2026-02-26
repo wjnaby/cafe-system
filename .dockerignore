@@ -1,0 +1,50 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE and OS
+.idea
+.vscode
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Dependencies (reinstalled in image)
+node_modules
+vendor
+
+# Local env and secrets (injected at runtime on Render)
+.env
+.env.*
+!.env.example
+
+# Build artifacts (Vite builds in Docker)
+public/build
+public/hot
+
+# Tests and dev tooling
+tests
+phpunit.xml
+.phpunit.result.cache
+.php-cs-fixer.cache
+.pest
+
+# Docs (not needed in image)
+*.md
+
+# Storage and cache (ephemeral; created at runtime)
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+bootstrap/cache/*
+!storage/logs/.gitkeep
+!storage/framework/cache/.gitkeep
+!storage/framework/sessions/.gitkeep
+!storage/framework/views/.gitkeep
+
+# Database (use Render PostgreSQL)
+database/*.sqlite
+database/*.sqlite-journal
