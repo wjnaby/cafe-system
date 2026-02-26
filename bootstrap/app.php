@@ -16,5 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        // Log exception message to stderr so it appears in Render logs (even when APP_DEBUG=false)
+        $exceptions->report(function (\Throwable $e) {
+            if (php_sapi_name() !== 'cli') {
+                error_log('[Laravel 500] ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
+            }
+        });
     })->create();
