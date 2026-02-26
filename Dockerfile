@@ -24,6 +24,8 @@ WORKDIR /var/www/html
 # Skip base image composer/script composer so we control install and build
 ENV SKIP_COMPOSER=1
 ENV WEBROOT=/var/www/html/public
+# Send non-file requests to Laravel index.php (fixes 404 on /menu, /login, etc.)
+ENV PHP_CATCHALL=1
 ENV PHP_ERRORS_STDERR=1
 ENV RUN_SCRIPTS=1
 ENV REAL_IP_HEADER=1
@@ -47,8 +49,8 @@ COPY --from=vite /app/public/build /var/www/html/public/build
 RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache && \
     chmod -R 775 storage bootstrap/cache
 
-# Optional: custom nginx config to ensure index.php routing (uncomment if needed)
-# COPY docker/nginx-site.conf /var/www/html/conf/nginx/nginx-site.conf
+# Custom nginx config: send all non-file requests to Laravel index.php (fixes /menu etc. 404)
+COPY docker/nginx-site.conf /var/www/html/conf/nginx/nginx-site.conf
 
 # Startup runs scripts in /var/www/html/scripts/ (migrate, cache, storage:link)
 CMD ["/start.sh"]
