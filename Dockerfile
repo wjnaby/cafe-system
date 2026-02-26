@@ -1,6 +1,21 @@
 # Production Dockerfile for Laravel 12 on Render (PostgreSQL)
 # Uses nginx + PHP-FPM; WEBROOT points to public/ for proper document root.
 
+# ---- Stage 1: Build Vite assets with Node ----
+FROM node:20-alpine AS vite
+
+WORKDIR /app
+
+COPY package.json package-lock.json* ./
+RUN npm ci --omit=dev
+
+COPY vite.config.js tailwind.config.js postcss.config.js ./
+COPY resources ./resources
+COPY public ./public
+
+RUN npm run build
+
+# ---- Stage 2: Laravel app with PHP-FPM ----
 FROM richarvey/nginx-php-fpm:3.1.6
 
 WORKDIR /var/www/html
@@ -24,12 +39,8 @@ COPY . .
 # Install PHP dependencies (no dev; production only)
 RUN composer install --no-dev --no-interaction --optimize-autoloader --prefer-dist
 
-# Install Node and build Vite assets (production manifest + hashed files)
-RUN apk add --no-cache nodejs npm && \
-    npm ci --omit=dev && \
-    npm run build && \
-    rm -rf node_modules && \
-    apk del npm
+# Copy built Vite assets from Node stage (no Node needed in this image)
+COPY --from=vite /app/public/build /var/www/html/public/build
 
 # Ensure writable directories exist (runtime script will chown if needed)
 RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache && \
