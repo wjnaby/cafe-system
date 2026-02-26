@@ -2,35 +2,30 @@
 
 @section('styles')
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Syne:wght@500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
 
     :root {
-        --blue-50:#eef4ff;--blue-100:#dbeafe;--blue-200:#bfdbfe;--blue-300:#93c5fd;
-        --blue-400:#60a5fa;--blue-500:#3b82f6;--blue-600:#2563eb;--blue-700:#1d4ed8;
-        --sky-100:#e0f2fe;--sky-400:#38bdf8;--sky-500:#0ea5e9;
+        --brown-dark:#3D2314;--brown-medium:#5C3A21;--cream:#F5F0E8;--cream-light:#FAF8F5;
+        --amber:#D4A574;--amber-dark:#B8956A;--text-dark:#2D1810;--text-muted:#6B5B4F;
         --teal-400:#2dd4bf;--teal-500:#14b8a6;
-        --violet-400:#a78bfa;--violet-500:#8b5cf6;
-        --amber-400:#fbbf24;--amber-500:#f59e0b;
         --rose-400:#fb7185;--rose-500:#f43f5e;
-        --green-400:#4ade80;--green-500:#22c55e;
-        --slate-50:#f8fafc;--slate-100:#f1f5f9;--slate-200:#e2e8f0;--slate-300:#cbd5e1;
-        --slate-400:#94a3b8;--slate-500:#64748b;--slate-600:#475569;--slate-700:#334155;--slate-800:#1e293b;
-        --text-primary:#1e293b;--text-muted:#94a3b8;
-        --card-bg:rgba(255,255,255,0.72);--card-border:rgba(148,163,184,0.18);
-        --card-shadow:0 1px 3px rgba(30,41,59,0.06),0 1px 2px rgba(30,41,59,0.04);
-        --radius:18px;
+        --slate-50:#FAF8F5;--slate-100:#F5F0E8;--slate-200:#E8E2DA;--slate-300:#d4c4b4;
+        --slate-400:#6B5B4F;--slate-500:#6B5B4F;--slate-600:#5C3A21;--slate-700:#3D2314;--slate-800:#2D1810;
+        --text-primary:#2D1810;
+        --card-bg:rgba(255,255,255,0.85);--card-border:rgba(232,226,218,0.8);
+        --card-shadow:0 4px 20px rgba(0,0,0,0.05);--radius:18px;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
     /* ── Page Shell ── */
     .customer-body {
-        font-family:'DM Sans',system-ui,sans-serif;
+        font-family:'Poppins',system-ui,sans-serif;
         min-height:100vh;
         background:
-            radial-gradient(ellipse 80% 60% at 15% 20%,rgba(219,234,254,.55) 0%,transparent 70%),
-            radial-gradient(ellipse 60% 50% at 80% 70%,rgba(224,242,254,.45) 0%,transparent 65%),
-            radial-gradient(ellipse 40% 40% at 55% 10%,rgba(191,219,254,.3) 0%,transparent 60%),
-            linear-gradient(160deg,#eef4ff 0%,#f0f7ff 40%,#eef6ff 100%);
+            radial-gradient(ellipse 80% 60% at 15% 20%,rgba(245,240,232,.8) 0%,transparent 70%),
+            radial-gradient(ellipse 60% 50% at 80% 70%,rgba(250,248,245,.6) 0%,transparent 65%),
+            radial-gradient(ellipse 40% 40% at 55% 10%,rgba(212,165,116,.15) 0%,transparent 60%),
+            linear-gradient(160deg,#FAF8F5 0%,#F5F0E8 40%,#FAF8F5 100%);
         color:var(--text-primary);
         padding:36px 40px 60px;
     }
@@ -48,7 +43,7 @@
         margin-bottom:20px;
         transition:color .2s;
     }
-    .back-link:hover { color:var(--blue-600); }
+    .back-link:hover { color:var(--brown-medium); }
     .back-link svg { width:16px; height:16px; }
 
     @keyframes fadeUp { from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);} }
@@ -63,7 +58,7 @@
         animation:fadeUp .4s ease both;
     }
     .profile-header {
-        background:linear-gradient(135deg,var(--blue-500),var(--violet-500));
+        background:linear-gradient(135deg,var(--amber),var(--brown-medium));
         padding:32px;
         display:flex;
         align-items:center;
@@ -81,16 +76,16 @@
         box-shadow:0 4px 20px rgba(0,0,0,.15);
     }
     .profile-avatar span {
-        font-family:'Syne',sans-serif;
+        font-family:'Playfair Display',serif;
         font-size:2.5rem;
         font-weight:700;
-        background:linear-gradient(135deg,var(--blue-500),var(--violet-500));
+        background:linear-gradient(135deg,var(--amber),var(--brown-medium));
         -webkit-background-clip:text;
         -webkit-text-fill-color:transparent;
         background-clip:text;
     }
     .profile-info h1 {
-        font-family:'Syne',sans-serif;
+        font-family:'Playfair Display',serif;
         font-size:1.75rem;
         font-weight:700;
         color:#fff;
@@ -132,13 +127,13 @@
         margin-bottom:6px;
     }
     .stat-value {
-        font-family:'Syne',sans-serif;
+        font-family:'Playfair Display',serif;
         font-size:1.5rem;
         font-weight:700;
     }
-    .stat-value.orders { color:var(--slate-800); }
+    .stat-value.orders { color:var(--text-dark); }
     .stat-value.spent { color:var(--teal-500); }
-    .stat-value.average { color:var(--blue-600); }
+    .stat-value.average { color:var(--amber-dark); }
 
     /* ── Orders Section ── */
     .orders-section {
@@ -152,14 +147,14 @@
         padding:0 4px;
     }
     .section-header h2 {
-        font-family:'Syne',sans-serif;
+        font-family:'Playfair Display',serif;
         font-size:1.25rem;
         font-weight:700;
-        color:var(--slate-800);
+        color:var(--text-dark);
     }
     .section-header .count {
-        background:var(--blue-50);
-        color:var(--blue-600);
+        background:#F5EDE4;
+        color:var(--brown-medium);
         font-size:.75rem;
         font-weight:600;
         padding:4px 12px;
@@ -194,7 +189,7 @@
         transition:background .15s;
     }
     .order-card:last-child { border-bottom:none; }
-    .order-card:hover { background:rgba(59,130,246,.025); }
+    .order-card:hover { background:rgba(212,165,116,.06); }
 
     .order-top {
         display:flex;
@@ -203,10 +198,10 @@
         margin-bottom:16px;
     }
     .order-meta .order-id {
-        font-family:'Syne',sans-serif;
+        font-family:'Playfair Display',serif;
         font-size:.95rem;
         font-weight:600;
-        color:var(--slate-800);
+        color:var(--text-dark);
         margin-bottom:2px;
     }
     .order-meta .order-date {
@@ -231,8 +226,8 @@
         color:#b45309;
     }
     .order-status.preparing {
-        background:#dbeafe;
-        color:#1d4ed8;
+        background:#F5EDE4;
+        color:#5C3A21;
     }
     .order-status.ready {
         background:#d1fae5;
@@ -244,10 +239,10 @@
     }
     .order-status svg { width:12px; height:12px; }
     .order-total {
-        font-family:'Syne',sans-serif;
+        font-family:'Playfair Display',serif;
         font-size:1.1rem;
         font-weight:700;
-        color:var(--slate-800);
+        color:var(--text-dark);
     }
 
     /* ── Order Items ── */
@@ -279,13 +274,13 @@
         color:var(--slate-700);
     }
     .order-item-name .qty {
-        color:var(--blue-600);
+        color:var(--brown-medium);
         font-weight:600;
     }
     .order-item-price {
         font-size:.88rem;
         font-weight:600;
-        color:var(--slate-800);
+        color:var(--text-dark);
     }
 
     /* ── View Link ── */
@@ -293,13 +288,13 @@
         display:inline-flex;
         align-items:center;
         gap:5px;
-        color:var(--blue-600);
+        color:var(--amber-dark);
         font-size:.84rem;
         font-weight:600;
         text-decoration:none;
         transition:color .2s;
     }
-    .view-link:hover { color:var(--blue-700); }
+    .view-link:hover { color:var(--brown-dark); }
     .view-link svg { width:14px; height:14px; }
 
     /* ── Responsive ── */

@@ -2,46 +2,43 @@
 
 @section('styles')
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Syne:wght@500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
 
     :root {
-        --blue-50:  #eef4ff;
-        --blue-100: #dbeafe;
-        --blue-200: #bfdbfe;
-        --blue-300: #93c5fd;
-        --blue-400: #60a5fa;
-        --blue-500: #3b82f6;
-        --blue-600: #2563eb;
-        --blue-700: #1d4ed8;
-        --sky-100:  #e0f2fe;
-        --sky-200:  #bae6fd;
-        --sky-300:  #7dd3fc;
-        --sky-400:  #38bdf8;
-        --sky-500:  #0ea5e9;
+        --brown-dark: #3D2314;
+        --brown-medium: #5C3A21;
+        --cream: #F5F0E8;
+        --cream-light: #FAF8F5;
+        --amber: #D4A574;
+        --amber-dark: #B8956A;
+        --text-dark: #2D1810;
+        --text-muted: #6B5B4F;
+        --sky-100: #e8e2da;
+        --sky-400: #c4a882;
+        --sky-500: #B8956A;
         --teal-400: #2dd4bf;
         --teal-500: #14b8a6;
-        --violet-400:#a78bfa;
-        --violet-500:#8b5cf6;
-        --amber-400: #fbbf24;
-        --amber-500: #f59e0b;
-        --rose-400:  #fb7185;
-        --rose-500:  #f43f5e;
-        --slate-50:  #f8fafc;
-        --slate-100: #f1f5f9;
-        --slate-200: #e2e8f0;
-        --slate-300: #cbd5e1;
-        --slate-400: #94a3b8;
-        --slate-500: #64748b;
-        --slate-600: #475569;
-        --slate-700: #334155;
-        --slate-800: #1e293b;
-        --text-primary: #1e293b;
-        --text-secondary: #64748b;
-        --text-muted: #94a3b8;
-        --card-bg: rgba(255,255,255,0.72);
-        --card-border: rgba(148,163,184,0.18);
-        --card-shadow: 0 1px 3px rgba(30,41,59,0.06), 0 1px 2px rgba(30,41,59,0.04);
-        --card-shadow-hover: 0 8px 24px rgba(37,99,235,0.12), 0 2px 6px rgba(30,41,59,0.06);
+        --violet-400: #c4a882;
+        --violet-500: #B8956A;
+        --amber-400: #e8c9a8;
+        --amber-500: #D4A574;
+        --rose-400: #fb7185;
+        --rose-500: #f43f5e;
+        --slate-50: #FAF8F5;
+        --slate-100: #F5F0E8;
+        --slate-200: #E8E2DA;
+        --slate-300: #d4c4b4;
+        --slate-400: #6B5B4F;
+        --slate-500: #6B5B4F;
+        --slate-600: #5C3A21;
+        --slate-700: #3D2314;
+        --slate-800: #2D1810;
+        --text-primary: #2D1810;
+        --text-secondary: #6B5B4F;
+        --card-bg: rgba(255,255,255,0.85);
+        --card-border: rgba(232,226,218,0.8);
+        --card-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        --card-shadow-hover: 0 8px 24px rgba(61,35,20,0.08), 0 2px 6px rgba(0,0,0,0.04);
         --radius: 18px;
         --radius-sm: 12px;
     }
@@ -49,13 +46,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     .dash-body {
-        font-family: 'DM Sans', system-ui, sans-serif;
+        font-family: 'Poppins', system-ui, sans-serif;
         min-height: 100vh;
         background:
-            radial-gradient(ellipse 80% 60% at 15% 20%, rgba(219,234,254,0.55) 0%, transparent 70%),
-            radial-gradient(ellipse 60% 50% at 80% 70%, rgba(224,242,254,0.45) 0%, transparent 65%),
-            radial-gradient(ellipse 40% 40% at 55% 10%, rgba(191,219,254,0.3) 0%, transparent 60%),
-            linear-gradient(160deg, #eef4ff 0%, #f0f7ff 40%, #eef6ff 100%);
+            radial-gradient(ellipse 80% 60% at 15% 20%, rgba(245,240,232,0.8) 0%, transparent 70%),
+            radial-gradient(ellipse 60% 50% at 80% 70%, rgba(250,248,245,0.6) 0%, transparent 65%),
+            radial-gradient(ellipse 40% 40% at 55% 10%, rgba(212,165,116,0.15) 0%, transparent 60%),
+            linear-gradient(160deg, #FAF8F5 0%, #F5F0E8 40%, #FAF8F5 100%);
         color: var(--text-primary);
         padding: 36px 40px 60px;
     }
@@ -68,10 +65,10 @@
         margin-bottom: 36px;
     }
     .dash-header h1 {
-        font-family: 'Syne', sans-serif;
+        font-family: 'Playfair Display', serif;
         font-size: 2rem;
         font-weight: 700;
-        color: var(--slate-800);
+        color: var(--text-dark);
         letter-spacing: -0.03em;
     }
     .dash-header p {
@@ -104,13 +101,13 @@
         color: var(--slate-600);
         backdrop-filter: blur(8px);
     }
-    .btn-outline:hover { border-color: var(--blue-300); color: var(--blue-600); background: #fff; }
+    .btn-outline:hover { border-color: var(--amber); color: var(--brown-medium); background: #fff; }
     .btn-primary {
-        background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
-        color: #fff;
-        box-shadow: 0 3px 12px rgba(37,99,235,0.28);
+        background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+        color: var(--brown-dark);
+        box-shadow: 0 3px 12px rgba(92,58,33,0.2);
     }
-    .btn-primary:hover { box-shadow: 0 5px 18px rgba(37,99,235,0.38); transform: translateY(-1px); }
+    .btn-primary:hover { box-shadow: 0 5px 18px rgba(92,58,33,0.28); transform: translateY(-1px); }
     .btn svg { width: 15px; height: 15px; }
 
     /* ── Top Stats Row ── */
@@ -142,10 +139,10 @@
     }
     .stat-card:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-2px); }
 
-    .stat-card.c-blue::before   { background: var(--blue-400); }
-    .stat-card.c-sky::before    { background: var(--sky-400); }
+    .stat-card.c-blue::before   { background: var(--amber); }
+    .stat-card.c-sky::before    { background: var(--amber-dark); }
     .stat-card.c-teal::before   { background: var(--teal-400); }
-    .stat-card.c-violet::before { background: var(--violet-400); }
+    .stat-card.c-violet::before { background: var(--brown-medium); }
 
     .stat-top-row { display: flex; justify-content: space-between; align-items: flex-start; }
     .stat-icon {
@@ -154,13 +151,13 @@
         display: flex; align-items: center; justify-content: center;
     }
     .stat-icon svg { width: 20px; height: 20px; }
-    .ic-blue   { background: #dbeafe; }  .ic-blue svg   { color: var(--blue-500); }
-    .ic-sky    { background: #e0f2fe; }  .ic-sky svg    { color: var(--sky-500); }
+    .ic-blue   { background: #F5EDE4; }  .ic-blue svg   { color: var(--amber-dark); }
+    .ic-sky    { background: #F5EDE4; }  .ic-sky svg    { color: var(--brown-medium); }
     .ic-teal   { background: #ccfbf1; }  .ic-teal svg   { color: var(--teal-500); }
-    .ic-violet { background: #ede9fe; }  .ic-violet svg { color: var(--violet-500); }
+    .ic-violet { background: #E8DED4; }  .ic-violet svg { color: var(--brown-dark); }
 
     .stat-label { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
-    .stat-value { font-family: 'Syne', sans-serif; font-size: 1.75rem; font-weight: 700; color: var(--slate-800); margin: 8px 0 4px; letter-spacing: -0.02em; }
+    .stat-value { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; color: var(--text-dark); margin: 8px 0 4px; letter-spacing: -0.02em; }
     .stat-sub   { font-size: 0.76rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
     .badge-up   { color: var(--teal-500); font-weight: 600; }
     .badge-down { color: var(--rose-400); font-weight: 600; }
@@ -189,20 +186,20 @@
         align-items: center;
     }
     .panel-head h2 {
-        font-family: 'Syne', sans-serif;
+        font-family: 'Playfair Display', serif;
         font-size: 1.05rem;
         font-weight: 600;
-        color: var(--slate-800);
+        color: var(--text-dark);
     }
     .panel-head .manage-link {
         font-size: 0.78rem;
-        color: var(--blue-500);
+        color: var(--amber-dark);
         font-weight: 600;
         text-decoration: none;
         display: flex; align-items: center; gap: 4px;
         transition: color 0.2s;
     }
-    .panel-head .manage-link:hover { color: var(--blue-700); }
+    .panel-head .manage-link:hover { color: var(--brown-dark); }
     .panel-head .manage-link svg { width: 13px; height: 13px; }
 
     /* ── Revenue Chart ── */
@@ -210,8 +207,8 @@
     .chart-legend { display: flex; gap: 20px; margin-bottom: 16px; }
     .legend-item { display: flex; align-items: center; gap: 7px; font-size: 0.78rem; color: var(--slate-500); font-weight: 500; }
     .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .legend-dot.blue { background: var(--blue-500); }
-    .legend-dot.sky  { background: var(--sky-400); }
+    .legend-dot.blue { background: var(--amber); }
+    .legend-dot.sky  { background: var(--amber-dark); }
 
     .chart-svg { width: 100%; display: block; }
 
@@ -225,7 +222,7 @@
     .status-item:last-child { border-bottom: none; }
     .status-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
     .status-dot.pending   { background: var(--amber-400); }
-    .status-dot.preparing { background: var(--blue-400); }
+    .status-dot.preparing { background: var(--amber); }
     .status-dot.ready     { background: var(--teal-400); }
     .status-dot.completed { background: var(--slate-300); }
 
@@ -236,7 +233,7 @@
     .status-bar-bg { flex: 0 0 90px; background: var(--slate-100); border-radius: 6px; height: 7px; overflow: hidden; }
     .status-bar-fill { height: 100%; border-radius: 6px; transition: width 0.6s ease; }
     .fill-pending   { background: var(--amber-400); }
-    .fill-preparing { background: var(--blue-400); }
+    .fill-preparing { background: var(--amber); }
     .fill-ready     { background: var(--teal-400); }
     .fill-completed { background: var(--slate-300); }
 
@@ -275,7 +272,7 @@
         white-space: nowrap;
     }
     tbody tr { transition: background 0.15s; }
-    tbody tr:hover { background: rgba(59,130,246,0.035); }
+    tbody tr:hover { background: rgba(212,165,116,0.08); }
     tbody tr:last-child td { border-bottom: none; }
 
     .order-id { font-weight: 700; color: var(--slate-800); }
@@ -290,19 +287,19 @@
         font-weight: 600;
     }
     .badge.pending   { background: #fef3c7; color: #b45309; }
-    .badge.preparing { background: #dbeafe; color: #1d4ed8; }
+    .badge.preparing { background: #F5EDE4; color: #5C3A21; }
     .badge.ready     { background: #d1fae5; color: #047857; }
     .badge.completed { background: var(--slate-100); color: var(--slate-500); }
 
     .action-link {
-        color: var(--blue-500);
+        color: var(--amber-dark);
         font-weight: 600;
         text-decoration: none;
         font-size: 0.78rem;
         display: inline-flex; align-items: center; gap: 3px;
         transition: color 0.2s;
     }
-    .action-link:hover { color: var(--blue-700); }
+    .action-link:hover { color: var(--brown-dark); }
 
     /* ── Top Menu Items ── */
     .menu-item-row {
@@ -316,17 +313,17 @@
     .menu-rank {
         width: 28px; height: 28px;
         border-radius: 8px;
-        background: var(--blue-50);
-        color: var(--blue-600);
+        background: #F5EDE4;
+        color: var(--brown-medium);
         font-weight: 700;
         font-size: 0.78rem;
         display: flex; align-items: center; justify-content: center;
         flex-shrink: 0;
     }
     .menu-info { flex: 1; min-width: 0; }
-    .menu-name { font-size: 0.84rem; font-weight: 600; color: var(--slate-700); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .menu-name { font-size: 0.84rem; font-weight: 600; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .menu-cat  { font-size: 0.74rem; color: var(--text-muted); margin-top: 1px; }
-    .menu-orders { font-size: 0.78rem; font-weight: 600; color: var(--blue-600); white-space: nowrap; }
+    .menu-orders { font-size: 0.78rem; font-weight: 600; color: var(--amber-dark); white-space: nowrap; }
 
     /* ── Empty State ── */
     .empty-state { text-align: center; padding: 48px 24px; }
@@ -487,12 +484,12 @@
                 <svg class="chart-svg" viewBox="0 0 720 220" preserveAspectRatio="none" style="height:220px;">
                     <defs>
                         <linearGradient id="gRevenue" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.22"/>
-                            <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.01"/>
+                            <stop offset="0%" stop-color="#D4A574" stop-opacity="0.22"/>
+                            <stop offset="100%" stop-color="#D4A574" stop-opacity="0.01"/>
                         </linearGradient>
                         <linearGradient id="gOrders" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.16"/>
-                            <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.01"/>
+                            <stop offset="0%" stop-color="#B8956A" stop-opacity="0.16"/>
+                            <stop offset="100%" stop-color="#B8956A" stop-opacity="0.01"/>
                         </linearGradient>
                     </defs>
 
@@ -511,16 +508,16 @@
                     <!-- Revenue Area -->
                     <path d="{{ $revenueArea }}" fill="url(#gRevenue)"/>
                     <!-- Revenue Line -->
-                    <path d="{{ $revenuePath }}" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="{{ $revenuePath }}" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 
                     <!-- Orders Area -->
                     <path d="{{ $orderArea }}" fill="url(#gOrders)"/>
                     <!-- Orders Line -->
-                    <path d="{{ $orderPath }}" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5,3"/>
+                    <path d="{{ $orderPath }}" fill="none" stroke="#B8956A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5,3"/>
 
                     <!-- Revenue Dots -->
                     @foreach($revenuePoints as $point)
-                    <circle cx="{{ $point['x'] }}" cy="{{ $point['y'] }}" r="4" fill="#fff" stroke="#3b82f6" stroke-width="2.5"/>
+                    <circle cx="{{ $point['x'] }}" cy="{{ $point['y'] }}" r="4" fill="#fff" stroke="#D4A574" stroke-width="2.5"/>
                     @endforeach
 
                     <!-- X Labels (dynamic) -->

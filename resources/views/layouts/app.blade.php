@@ -11,9 +11,9 @@
         :root {
             --brown-dark: #3D2314;
             --brown-medium: #5C3A21;
-            --brown-light: #8B6914;
-            --cream: #FAF7F2;
-            --cream-dark: #F5EFE6;
+            --cream: #F5F0E8;
+            --cream-light: #FAF8F5;
+            --cream-dark: #E8E2DA;
             --amber: #D4A574;
             --amber-dark: #B8956A;
             --text-dark: #2D1810;
