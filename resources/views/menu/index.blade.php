@@ -2,29 +2,41 @@
 
 @section('styles')
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
 
     :root {
         --brown-dark: #3D2314;
         --brown-medium: #5C3A21;
-        --brown-light: #8B6914;
         --cream: #F5F0E8;
         --cream-light: #FAF8F5;
         --amber: #D4A574;
         --amber-dark: #B8956A;
         --text-dark: #2D1810;
         --text-muted: #6B5B4F;
-        --card-bg: #fff;
+        --slate-50: #FAF8F5;
+        --slate-100: #F5F0E8;
+        --slate-200: #E8E2DA;
+        --slate-400: #6B5B4F;
+        --slate-600: #5C3A21;
+        --slate-700: #3D2314;
+        --text-primary: #2D1810;
+        --card-bg: rgba(255,255,255,0.85);
+        --card-border: rgba(232,226,218,0.8);
         --border: #E8E2DA;
+        --radius: 18px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     .menu-page {
-        font-family: 'Outfit', sans-serif;
-        background: var(--cream-light);
+        font-family: 'Poppins', sans-serif;
+        background:
+            radial-gradient(ellipse 80% 60% at 15% 20%, rgba(245,240,232,0.8) 0%, transparent 70%),
+            radial-gradient(ellipse 60% 50% at 80% 70%, rgba(250,248,245,0.6) 0%, transparent 65%),
+            radial-gradient(ellipse 40% 40% at 55% 10%, rgba(212,165,116,0.15) 0%, transparent 60%),
+            linear-gradient(160deg, #FAF8F5 0%, #F5F0E8 40%, #FAF8F5 100%);
         min-height: 100vh;
-        color: var(--text-dark);
+        color: var(--text-primary);
     }
 
     /* ─── Grain overlay ─── */
@@ -45,7 +57,7 @@
         background: var(--brown-dark);
         position: relative;
         overflow: hidden;
-        padding: 140px 0 100px;
+        padding: 100px 0 72px;
     }
 
     /* ambient light blobs */
@@ -74,7 +86,7 @@
         padding: 0 32px;
         display: grid;
         grid-template-columns: 1fr 380px;
-        gap: 80px;
+        gap: 48px;
         align-items: end;
         position: relative;
         z-index: 1;
@@ -85,7 +97,7 @@
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        margin-bottom: 28px;
+        margin-bottom: 20px;
     }
     .hero-tag__line {
         width: 32px;
@@ -101,12 +113,12 @@
     }
 
     .hero-content h1 {
-        font-family: 'DM Serif Display', serif;
+        font-family: 'Playfair Display', serif;
         font-size: clamp(3rem, 6vw, 5rem);
         font-weight: 400;
         color: #fff;
         line-height: 1.08;
-        margin-bottom: 24px;
+        margin-bottom: 16px;
     }
     .hero-content h1 em {
         font-style: italic;
@@ -116,9 +128,9 @@
     .hero-content p {
         font-size: 1.05rem;
         color: rgba(255,255,255,.55);
-        line-height: 1.75;
+        line-height: 1.65;
         max-width: 480px;
-        margin-bottom: 40px;
+        margin-bottom: 28px;
         font-weight: 300;
     }
 
@@ -149,85 +161,78 @@
     }
     .hero-cta__circle svg { width: 18px; height: 18px; color: var(--brown-dark); }
 
-    /* Right visual block */
-    .hero-visual {
-        position: relative;
-        height: 360px;
-    }
-    .hero-visual__card {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(145deg, rgba(255,255,255,.06) 0%, transparent 70%);
-        border: 1px solid rgba(255,255,255,.08);
-        border-radius: 24px;
-        backdrop-filter: blur(2px);
+    /* Right: decorative cup + tagline */
+    .hero-deco {
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
-        padding: 36px;
-        overflow: hidden;
-    }
-    .hero-visual__card::before {
-        content: '';
-        position: absolute;
-        top: 28px; right: 28px;
-        width: 140px; height: 140px;
-        border-radius: 50%;
-        border: 1px solid rgba(212,165,116,.22);
-    }
-    .hero-visual__card::after {
-        content: '';
-        position: absolute;
-        top: 48px; right: 48px;
-        width: 100px; height: 100px;
-        border-radius: 50%;
-        border: 1px solid rgba(212,165,116,.14);
-    }
-    .hero-visual__stat {
+        align-items: center;
+        justify-content: center;
         position: relative;
-        z-index: 1;
+        height: 260px;
     }
-    .hero-visual__stat-num {
-        font-family: 'DM Serif Display', serif;
-        font-size: 2.6rem;
-        color: #fff;
-        line-height: 1;
+    .hero-deco__cup {
+        position: relative;
+        width: 160px;
+        height: 140px;
     }
-    .hero-visual__stat-label {
-        font-size: .78rem;
-        letter-spacing: .14em;
-        text-transform: uppercase;
-        color: rgba(255,255,255,.4);
-        margin-top: 6px;
-        font-weight: 400;
-    }
-    /* floating mini-cards */
-    .hero-visual__mini {
+    .hero-deco__cup-body {
         position: absolute;
-        background: rgba(255,255,255,.07);
-        border: 1px solid rgba(255,255,255,.1);
-        border-radius: 14px;
-        backdrop-filter: blur(4px);
-        padding: 14px 18px;
-        z-index: 2;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,.04) 100%);
+        border: 2px solid rgba(212,165,116,.35);
+        border-radius: 0 0 16px 16px;
+        border-top: none;
+        box-shadow: inset 0 -20px 30px rgba(0,0,0,.15);
     }
-    .hero-visual__mini--top {
-        top: -20px; left: 20px;
+    .hero-deco__cup-body::before {
+        content: '';
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70%;
+        height: 8px;
+        background: rgba(61,35,20,.4);
+        border-radius: 4px;
     }
-    .hero-visual__mini--right {
-        top: 60px; right: -30px;
+    .hero-deco__cup-handle {
+        position: absolute;
+        bottom: 20px;
+        right: -28px;
+        width: 36px;
+        height: 50px;
+        border: 2px solid rgba(212,165,116,.35);
+        border-left: none;
+        border-radius: 0 24px 24px 0;
+        background: transparent;
     }
-    .hero-visual__mini-label {
-        font-size: .7rem;
-        letter-spacing: .1em;
+    .hero-deco__steam {
+        position: absolute;
+        width: 6px;
+        height: 28px;
+        background: linear-gradient(180deg, transparent, rgba(255,255,255,.2));
+        border-radius: 3px;
+        bottom: 100px;
+        animation: steam 3s ease-in-out infinite;
+    }
+    .hero-deco__steam--1 { left: 42px; animation-delay: 0s; }
+    .hero-deco__steam--2 { left: 50%; margin-left: -3px; animation-delay: .4s; }
+    .hero-deco__steam--3 { right: 42px; left: auto; animation-delay: .8s; }
+    @keyframes steam {
+        0%, 100% { opacity: .25; transform: translateY(0); }
+        50% { opacity: .6; transform: translateY(-10px); }
+    }
+    .hero-deco__tagline {
+        margin-top: 20px;
+        font-size: .8rem;
+        letter-spacing: .2em;
         text-transform: uppercase;
-        color: rgba(255,255,255,.4);
-    }
-    .hero-visual__mini-val {
-        font-size: .95rem;
-        font-weight: 600;
-        color: #fff;
-        margin-top: 2px;
+        color: rgba(255,255,255,.35);
+        font-weight: 400;
     }
 
     /* ═══════════════════════════════
@@ -243,8 +248,10 @@
 
     .search-bar {
         background: var(--card-bg);
-        border-radius: 18px;
-        box-shadow: 0 8px 40px rgba(61,35,20,.1);
+        backdrop-filter: blur(14px);
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         padding: 10px 10px 10px 28px;
         display: flex;
         align-items: center;
@@ -261,9 +268,9 @@
         flex: 1;
         border: none;
         outline: none;
-        font-family: 'Outfit', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-size: .92rem;
-        color: var(--text-dark);
+        color: var(--text-primary);
         background: transparent;
         min-width: 0;
         padding: 8px 0;
@@ -275,7 +282,7 @@
         -webkit-appearance: none;
         border: none;
         outline: none;
-        font-family: 'Outfit', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-size: .88rem;
         color: var(--text-muted);
         background: var(--cream-light)
@@ -295,7 +302,7 @@
         border: none;
         border-radius: 12px;
         padding: 13px 26px;
-        font-family: 'Outfit', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-size: .88rem;
         font-weight: 500;
         cursor: pointer;
@@ -309,7 +316,7 @@
     .search-bar__btn svg { width: 16px; height: 16px; }
 
     .search-bar__clear {
-        font-family: 'Outfit', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-size: .82rem;
         color: var(--text-muted);
         text-decoration: none;
@@ -351,7 +358,7 @@
         border-radius: 8px;
         border: 1px solid var(--border);
         background: var(--card-bg);
-        font-family: 'Outfit', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-size: .84rem;
         font-weight: 400;
         color: var(--text-muted);
@@ -383,7 +390,7 @@
        ═══════════════════════════════ */
     .menu-body {
         max-width: 1160px;
-        margin: 52px auto 100px;
+        margin: 40px auto 72px;
         padding: 0 32px;
     }
 
@@ -402,10 +409,10 @@
         gap: 16px;
     }
     .section-head h2 {
-        font-family: 'DM Serif Display', serif;
+        font-family: 'Playfair Display', serif;
         font-size: 1.9rem;
         font-weight: 400;
-        color: var(--text-dark);
+        color: var(--text-primary);
     }
     .section-head__count {
         font-size: .78rem;
@@ -425,16 +432,18 @@
     /* ─── Product Card ─── */
     .product-card {
         background: var(--card-bg);
-        border-radius: 16px;
+        backdrop-filter: blur(14px);
+        border-radius: var(--radius);
         overflow: hidden;
-        border: 1px solid var(--border);
+        border: 1px solid var(--card-border);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         transition: box-shadow .35s ease, transform .35s ease;
         display: flex;
         flex-direction: column;
     }
     .product-card:hover {
-        box-shadow: 0 12px 40px rgba(61,35,20,.11);
-        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(61,35,20,0.08), 0 2px 6px rgba(0,0,0,0.04);
+        transform: translateY(-2px);
     }
 
     /* Image area */
@@ -486,10 +495,10 @@
         flex-direction: column;
     }
     .product-card__name {
-        font-family: 'DM Serif Display', serif;
+        font-family: 'Playfair Display', serif;
         font-size: 1.2rem;
         font-weight: 400;
-        color: var(--text-dark);
+        color: var(--text-primary);
         margin-bottom: 6px;
     }
     .product-card__desc {
@@ -529,14 +538,14 @@
         border-top: 1px solid var(--border);
     }
     .product-card__price {
-        font-family: 'DM Serif Display', serif;
+        font-family: 'Playfair Display', serif;
         font-size: 1.45rem;
         color: var(--brown-dark);
     }
     .product-card__price sup {
         font-size: .72rem;
         vertical-align: super;
-        font-family: 'Outfit', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-weight: 500;
         margin-right: 1px;
     }
@@ -550,7 +559,7 @@
         border: none;
         border-radius: 10px;
         padding: 10px 20px;
-        font-family: 'Outfit', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-size: .84rem;
         font-weight: 500;
         cursor: pointer;
@@ -568,7 +577,7 @@
         border: 1px solid var(--border);
         border-radius: 10px;
         padding: 10px 18px;
-        font-family: 'Outfit', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-size: .84rem;
         font-weight: 400;
         cursor: pointer;
@@ -591,10 +600,10 @@
         color: var(--amber);
     }
     .no-results h3 {
-        font-family: 'DM Serif Display', serif;
+        font-family: 'Playfair Display', serif;
         font-size: 1.5rem;
         font-weight: 400;
-        color: var(--text-dark);
+        color: var(--text-primary);
         margin-bottom: 8px;
     }
     .no-results p { color: var(--text-muted); font-size: .9rem; margin-bottom: 20px; }
@@ -615,12 +624,12 @@
             grid-template-columns: 1fr;
             gap: 0;
         }
-        .hero-visual { display: none; }
-        .menu-hero { padding: 110px 0 72px; }
+        .hero-deco { display: none; }
+        .menu-hero { padding: 88px 0 56px; }
         .hero-content h1 { font-size: 2.8rem; }
     }
     @media (max-width: 600px) {
-        .menu-hero { padding: 90px 0 60px; }
+        .menu-hero { padding: 72px 0 48px; }
         .hero-inner { padding: 0 20px; }
         .hero-content h1 { font-size: 2.2rem; }
         .hero-content p { font-size: .94rem; }
@@ -673,22 +682,16 @@
                 @endauth
             </div>
 
-            <!-- Right visual (hidden on mobile) -->
-            <div class="hero-visual">
-                <div class="hero-visual__mini hero-visual__mini--top">
-                    <div class="hero-visual__mini-label">Origin</div>
-                    <div class="hero-visual__mini-val">Single Estate</div>
+            <!-- Right: decorative focus -->
+            <div class="hero-deco">
+                <div class="hero-deco__cup">
+                    <div class="hero-deco__cup-body"></div>
+                    <div class="hero-deco__cup-handle"></div>
+                    <div class="hero-deco__steam hero-deco__steam--1"></div>
+                    <div class="hero-deco__steam hero-deco__steam--2"></div>
+                    <div class="hero-deco__steam hero-deco__steam--3"></div>
                 </div>
-                <div class="hero-visual__mini hero-visual__mini--right">
-                    <div class="hero-visual__mini-label">Roasted</div>
-                    <div class="hero-visual__mini-val">Fresh Daily</div>
-                </div>
-                <div class="hero-visual__card">
-                    <div class="hero-visual__stat">
-                        <div class="hero-visual__stat-num">47+</div>
-                        <div class="hero-visual__stat-label">Handcrafted Drinks</div>
-                    </div>
-                </div>
+                <p class="hero-deco__tagline">Crafted with care</p>
             </div>
         </div>
     </section>

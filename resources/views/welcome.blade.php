@@ -22,6 +22,8 @@
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Outfit', sans-serif;
             background: var(--cream);
@@ -187,13 +189,12 @@
            HERO
            ═══════════════════════════════ */
         .hero {
-            min-height: 100vh;
             display: flex;
             align-items: center;
             background: var(--brown-dark);
             position: relative;
             overflow: hidden;
-            padding: 100px 32px 80px;
+            padding: 88px 32px 64px;
         }
 
         /* Ambient blobs */
@@ -203,9 +204,9 @@
             filter: blur(100px);
             pointer-events: none;
         }
-        .hero__blob--1 { width: 600px; height: 600px; background: var(--amber); opacity: .12; top: -200px; right: -180px; }
-        .hero__blob--2 { width: 380px; height: 380px; background: var(--brown-medium); opacity: .3; bottom: -120px; left: -100px; }
-        .hero__blob--3 { width: 200px; height: 200px; background: var(--amber-dark); opacity: .08; top: 55%; left: 40%; }
+        .hero__blob--1 { width: 500px; height: 500px; background: var(--amber); opacity: .12; top: -160px; right: -140px; }
+        .hero__blob--2 { width: 320px; height: 320px; background: var(--brown-medium); opacity: .28; bottom: -80px; left: -80px; }
+        .hero__blob--3 { width: 160px; height: 160px; background: var(--amber-dark); opacity: .08; top: 50%; left: 35%; }
 
         .hero__inner {
             max-width: 1160px;
@@ -213,7 +214,7 @@
             width: 100%;
             display: grid;
             grid-template-columns: 1.1fr 1fr;
-            gap: 80px;
+            gap: 56px;
             align-items: center;
             position: relative;
             z-index: 1;
@@ -224,7 +225,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 28px;
+            margin-bottom: 18px;
         }
         .hero__tag-line { width: 28px; height: 1px; background: var(--amber); }
         .hero__tag-text {
@@ -237,72 +238,64 @@
 
         .hero__title {
             font-family: 'DM Serif Display', serif;
-            font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+            font-size: clamp(2.4rem, 4.8vw, 3.8rem);
             font-weight: 400;
             color: #fff;
             line-height: 1.07;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
         .hero__title em { font-style: italic; color: var(--amber); }
 
         .hero__sub {
-            font-size: 1.02rem;
+            font-size: .95rem;
             color: rgba(255,255,255,.5);
-            line-height: 1.8;
-            max-width: 480px;
-            margin-bottom: 40px;
+            line-height: 1.7;
+            max-width: 440px;
+            margin-bottom: 28px;
             font-weight: 300;
         }
 
-        .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+        .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
-        /* Right: image collage */
+        /* Right: single coffee image */
         .hero__visual {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 14px;
-            height: 420px;
-        }
-        .hero__vis-item {
-            border-radius: 16px;
-            overflow: hidden;
             position: relative;
+            height: 320px;
+            border-radius: 20px;
+            overflow: hidden;
         }
-        .hero__vis-item--tall { grid-row: span 2; }
-
-        .hero__vis-item img {
-            width: 100%; height: 100%;
+        .hero__visual img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            transition: transform .6s ease;
+            transition: transform .5s ease;
         }
-        .hero__vis-item:hover img { transform: scale(1.05); }
+        .hero__visual:hover img { transform: scale(1.03); }
 
-        /* Placeholder fill when no image */
         .hero__vis-placeholder {
-            width: 100%; height: 100%;
-            background: linear-gradient(145deg, rgba(255,255,255,.06) 0%, transparent 70%);
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, rgba(255,255,255,.06) 0%, transparent 65%);
             border: 1px solid rgba(255,255,255,.08);
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .hero__vis-placeholder svg { width: 48px; height: 48px; color: rgba(255,255,255,.15); }
+        .hero__vis-placeholder svg { width: 80px; height: 80px; color: rgba(255,255,255,.2); }
 
-        /* Floating info pill on the collage */
         .hero__float {
             position: absolute;
-            bottom: 16px; left: 16px;
-            background: rgba(255,255,255,.1);
+            bottom: 14px; left: 14px;
+            background: rgba(255,255,255,.12);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,.12);
-            border-radius: 12px;
-            padding: 12px 16px;
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 10px;
+            padding: 10px 14px;
             z-index: 2;
         }
-        .hero__float-label { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.45); }
-        .hero__float-val { font-size: .92rem; font-weight: 600; color: #fff; margin-top: 2px; }
+        .hero__float-label { font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+        .hero__float-val { font-size: .85rem; font-weight: 600; color: #fff; margin-top: 2px; }
 
         /* ═══════════════════════════════
            FEATURES / WHY US
@@ -409,7 +402,7 @@
            VISIT US
            ═══════════════════════════════ */
         .visit {
-            padding: 110px 32px;
+            padding: 72px 32px;
             background: var(--cream);
         }
         .visit__inner {
@@ -417,14 +410,14 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1.1fr;
-            gap: 72px;
+            gap: 48px;
             align-items: center;
         }
 
         .visit__img {
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
-            height: 440px;
+            height: 320px;
             position: relative;
         }
         .visit__img img { width: 100%; height: 100%; object-fit: cover; }
@@ -433,170 +426,257 @@
             background: linear-gradient(145deg, var(--cream-dark) 0%, #DDD5C6 100%);
             display: flex; align-items: center; justify-content: center;
         }
-        .visit__img--ph svg { width: 72px; height: 72px; color: var(--amber-dark); opacity: .3; }
+        .visit__img--ph svg { width: 56px; height: 56px; color: var(--amber-dark); opacity: .3; }
 
         /* Floating card on image */
         .visit__badge {
             position: absolute;
-            bottom: 24px; right: 24px;
+            bottom: 16px; right: 16px;
             background: rgba(255,255,255,.92);
             backdrop-filter: blur(8px);
-            border-radius: 14px;
-            padding: 18px 22px;
-            box-shadow: 0 8px 32px rgba(0,0,0,.08);
+            border-radius: 12px;
+            padding: 12px 16px;
+            box-shadow: 0 6px 24px rgba(0,0,0,.08);
             z-index: 2;
         }
-        .visit__badge-label { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
-        .visit__badge-val { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--brown-dark); margin-top: 2px; }
+        .visit__badge-label { font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
+        .visit__badge-val { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: var(--brown-dark); margin-top: 2px; }
 
-        .visit__content .sec-tag { margin-bottom: 18px; display: inline-flex; align-items: center; gap: 10px; }
+        .visit__content .sec-tag { margin-bottom: 12px; display: inline-flex; align-items: center; gap: 10px; }
         .visit__content h2 {
             font-family: 'DM Serif Display', serif;
-            font-size: clamp(2rem, 3.2vw, 2.6rem);
+            font-size: clamp(1.65rem, 2.8vw, 2.15rem);
             font-weight: 400;
             color: var(--brown-dark);
             line-height: 1.2;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
         }
         .visit__content h2 em { font-style: italic; color: var(--amber-dark); }
         .visit__content > p {
-            font-size: .95rem;
+            font-size: .88rem;
             color: var(--text-muted);
-            line-height: 1.8;
+            line-height: 1.65;
             font-weight: 300;
-            margin-bottom: 32px;
+            margin-bottom: 22px;
         }
 
-        .visit__info { display: flex; flex-direction: column; gap: 18px; margin-bottom: 36px; }
-        .visit__info-row { display: flex; align-items: center; gap: 16px; }
+        .visit__info { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+        .visit__info-row { display: flex; align-items: center; gap: 12px; }
         .visit__info-icon {
-            width: 44px; height: 44px;
-            border-radius: 10px;
+            width: 36px; height: 36px;
+            border-radius: 8px;
             background: var(--cream-dark);
             border: 1px solid var(--border);
             display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
         }
-        .visit__info-icon svg { width: 20px; height: 20px; color: var(--amber-dark); }
-        .visit__info-text { font-size: .9rem; color: var(--text-dark); font-weight: 400; }
-        .visit__info-label { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1px; }
+        .visit__info-icon svg { width: 16px; height: 16px; color: var(--amber-dark); }
+        .visit__info-text { font-size: .85rem; color: var(--text-dark); font-weight: 400; }
+        .visit__info-label { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1px; }
 
         /* ═══════════════════════════════
            MENU PREVIEW
            ═══════════════════════════════ */
         .menu-preview {
-            padding: 110px 32px;
-            background: #fff;
+            padding: 120px 32px 100px;
+            background: linear-gradient(180deg, #fff 0%, var(--cream) 35%, var(--cream-dark) 100%);
+            position: relative;
+        }
+        .menu-preview::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            opacity: .8;
         }
         .menu-preview__inner { max-width: 1160px; margin: 0 auto; }
+
+        .menu-preview .sec-head { margin-bottom: 56px; }
+        .menu-preview .sec-head__title {
+            position: relative;
+            display: inline-block;
+        }
+        .menu-preview .sec-head__title::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--amber), transparent);
+            border-radius: 2px;
+            opacity: .4;
+        }
 
         .menu-preview__grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-            margin-bottom: 52px;
+            gap: 28px;
+            margin-bottom: 56px;
         }
 
         .menu-card {
-            border: 1px solid var(--border);
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
-            background: var(--cream);
-            transition: box-shadow .35s, transform .35s;
+            background: #fff;
+            transition: box-shadow .4s ease, transform .4s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: flex;
             flex-direction: column;
+            box-shadow: 0 4px 20px rgba(61,35,20,.06), 0 1px 3px rgba(61,35,20,.04);
+            border: 1px solid rgba(228, 222, 213, .6);
         }
-        .menu-card:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(61,35,20,.1); }
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(61,35,20,.12), 0 8px 24px rgba(61,35,20,.08);
+            border-color: rgba(212,165,116,.25);
+        }
 
         .menu-card__img {
-            height: 195px;
+            height: 200px;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(140deg, var(--cream-dark) 0%, #E0D8CC 100%);
+            background: linear-gradient(145deg, var(--cream-dark) 0%, #E8E0D4 100%);
         }
-        .menu-card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-        .menu-card:hover .menu-card__img img { transform: scale(1.06); }
+        .menu-card__img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .menu-card:hover .menu-card__img img { transform: scale(1.08); }
 
+        .menu-card__img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(61,35,20,.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
         .menu-card__img--ph { display: flex; align-items: center; justify-content: center; }
-        .menu-card__img--ph svg { width: 44px; height: 44px; color: var(--amber-dark); opacity: .3; }
+        .menu-card__img--ph::after { display: none; }
+        .menu-card__img--ph svg { width: 48px; height: 48px; color: var(--amber-dark); opacity: .35; }
 
         .menu-card__cat {
             position: absolute;
-            top: 14px; left: 14px;
-            background: var(--brown-dark);
-            color: var(--amber);
-            font-size: .68rem;
+            top: 16px; left: 16px;
+            background: rgba(255,255,255,.95);
+            color: var(--brown-dark);
+            font-size: .65rem;
             font-weight: 600;
-            letter-spacing: .1em;
+            letter-spacing: .12em;
             text-transform: uppercase;
-            padding: 5px 11px;
-            border-radius: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
             z-index: 2;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(61,35,20,.08);
         }
 
-        .menu-card__body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+        .menu-card__body {
+            padding: 24px 26px 26px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
         .menu-card__name {
             font-family: 'DM Serif Display', serif;
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             font-weight: 400;
             color: var(--brown-dark);
-            margin-bottom: 6px;
+            margin-bottom: 0;
+            line-height: 1.3;
         }
         .menu-card__desc {
-            font-size: .83rem;
+            font-size: .84rem;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.65;
             font-weight: 300;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            margin-bottom: auto;
+            margin-bottom: 0;
         }
 
         .menu-card__footer {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding-top: 18px;
-            margin-top: 16px;
-            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: auto;
+            gap: 12px;
         }
         .menu-card__price {
             font-family: 'DM Serif Display', serif;
-            font-size: 1.35rem;
+            font-size: 1.5rem;
             color: var(--brown-dark);
+            letter-spacing: -.02em;
         }
-        .menu-card__price sup { font-size: .7rem; font-family: 'Outfit', sans-serif; font-weight: 500; vertical-align: super; margin-right: 1px; }
+        .menu-card__price sup {
+            font-size: .75rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            vertical-align: super;
+            margin-right: 2px;
+            opacity: .9;
+        }
 
         .btn--card {
-            padding: 9px 18px;
-            border-radius: 8px;
-            background: var(--brown-dark);
-            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: var(--amber);
+            color: var(--brown-dark);
             font-family: 'Outfit', sans-serif;
-            font-size: .82rem;
-            font-weight: 500;
+            font-size: .83rem;
+            font-weight: 600;
             border: none;
             cursor: pointer;
             text-decoration: none;
-            transition: background .25s, transform .15s;
+            transition: background .25s, transform .2s, box-shadow .25s;
+            flex-shrink: 0;
+            box-shadow: 0 2px 12px rgba(212,165,116,.3);
         }
-        .btn--card:hover { background: var(--brown-medium); transform: scale(1.04); }
+        .btn--card:hover {
+            background: var(--amber-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(212,165,116,.4);
+        }
 
         /* empty state */
         .menu-preview__empty {
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 72px 40px;
+            border-radius: 20px;
+            padding: 80px 48px;
             text-align: center;
-            background: var(--cream);
+            background: linear-gradient(145deg, #fff 0%, var(--cream) 100%);
+            border: 1px dashed var(--border);
+            box-shadow: 0 4px 24px rgba(61,35,20,.04);
         }
-        .menu-preview__empty svg { width: 52px; height: 52px; color: var(--amber); margin-bottom: 18px; }
-        .menu-preview__empty h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; font-weight: 400; color: var(--brown-dark); margin-bottom: 6px; }
-        .menu-preview__empty p { color: var(--text-muted); font-size: .88rem; }
+        .menu-preview__empty svg {
+            width: 56px;
+            height: 56px;
+            color: var(--amber);
+            margin-bottom: 20px;
+            opacity: .9;
+        }
+        .menu-preview__empty h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--brown-dark);
+            margin-bottom: 8px;
+        }
+        .menu-preview__empty p { color: var(--text-muted); font-size: .9rem; }
 
-        .menu-preview__cta { text-align: center; }
+        .menu-preview__cta {
+            text-align: center;
+        }
+        .menu-preview__cta .btn {
+            padding: 14px 32px;
+            font-size: .9rem;
+            border-radius: 12px;
+        }
 
         /* ═══════════════════════════════
            FOOTER
@@ -604,96 +684,103 @@
         .footer {
             background: var(--brown-dark);
             color: #fff;
-            padding: 72px 32px 32px;
+            padding: 40px 24px 20px;
         }
         .footer__inner { max-width: 1160px; margin: 0 auto; }
 
         .footer__grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 48px;
-            padding-bottom: 48px;
+            gap: 28px;
+            padding-bottom: 24px;
             border-bottom: 1px solid rgba(255,255,255,.1);
         }
 
         .footer__brand-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 18px;
+            gap: 8px;
+            margin-bottom: 10px;
         }
         .footer__brand-mark {
-            width: 34px; height: 34px;
+            width: 28px; height: 28px;
             border: 1px solid rgba(255,255,255,.15);
-            border-radius: 8px;
+            border-radius: 6px;
             display: flex; align-items: center; justify-content: center;
         }
-        .footer__brand-mark svg { width: 18px; height: 18px; color: var(--amber); }
-        .footer__brand-name { font-family: 'DM Serif Display', serif; font-size: 1.2rem; }
+        .footer__brand-mark svg { width: 14px; height: 14px; color: var(--amber); }
+        .footer__brand-name { font-family: 'DM Serif Display', serif; font-size: 1rem; }
         .footer__brand-name span { color: var(--amber); }
 
         .footer__brand p {
-            font-size: .85rem;
+            font-size: .78rem;
             color: rgba(255,255,255,.5);
-            line-height: 1.75;
+            line-height: 1.5;
             font-weight: 300;
-            max-width: 320px;
+            max-width: 280px;
         }
 
         .footer__col h4 {
-            font-size: .72rem;
+            font-size: .65rem;
             font-weight: 600;
-            letter-spacing: .14em;
+            letter-spacing: .12em;
             text-transform: uppercase;
             color: var(--amber);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         .footer__col ul { list-style: none; }
-        .footer__col li { margin-bottom: 12px; }
+        .footer__col li { margin-bottom: 6px; }
         .footer__col a {
             color: rgba(255,255,255,.5);
             text-decoration: none;
-            font-size: .87rem;
+            font-size: .8rem;
             font-weight: 300;
             transition: color .25s;
         }
         .footer__col a:hover { color: #fff; }
         .footer__col li:not(:has(a)) {
             color: rgba(255,255,255,.5);
-            font-size: .87rem;
+            font-size: .8rem;
             font-weight: 300;
         }
 
         .footer__bottom {
-            padding-top: 28px;
+            padding-top: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         .footer__bottom p {
             color: rgba(255,255,255,.3);
-            font-size: .8rem;
+            font-size: .75rem;
         }
 
         /* ═══════════════════════════════
            RESPONSIVE
            ═══════════════════════════════ */
         @media (max-width: 1024px) {
-            .hero__inner { grid-template-columns: 1fr; gap: 48px; }
-            .hero__visual { max-width: 480px; margin: 0 auto; height: 340px; }
+            .hero__inner { grid-template-columns: 1fr; gap: 40px; }
+            .hero__visual { max-width: 440px; margin: 0 auto; height: 280px; }
             .hero { text-align: center; }
             .hero__tag { justify-content: center; }
             .hero__sub { margin-left: auto; margin-right: auto; }
             .hero__actions { justify-content: center; }
+            /* Stacked layout: use fade-in-up instead of side slide */
+            .hero__tag, .hero__title, .hero__sub, .hero__actions { animation: fadeInUp .7s ease-out both; }
+            .hero__tag { animation-delay: .15s; }
+            .hero__title { animation-delay: .3s; }
+            .hero__sub { animation-delay: .45s; }
+            .hero__actions { animation-delay: .6s; }
+            .hero__visual { animation: fadeInUp .9s ease-out .4s both; }
 
             .sec-head { grid-template-columns: 1fr; gap: 16px; }
             .sec-head__right { justify-self: start; max-width: 100%; }
 
             .features__grid,
-            .menu-preview__grid { grid-template-columns: repeat(2, 1fr); }
+            .menu-preview__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 
             .visit__inner { grid-template-columns: 1fr; }
-            .visit__img { order: -1; height: 320px; }
+            .visit__img { order: -1; height: 260px; }
 
             .footer__grid { grid-template-columns: 1fr 1fr; }
         }
@@ -702,13 +789,14 @@
             .nav__links { display: none; }
             .nav__toggle { display: block; }
 
-            .hero { padding: 100px 24px 70px; }
-            .hero__visual { height: 280px; }
-            .hero__title { font-size: 2.4rem; }
+            .hero { padding: 72px 24px 52px; }
+            .hero__visual { height: 240px; }
+            .hero__title { font-size: 2.1rem; }
 
-            .features, .visit, .menu-preview { padding: 80px 24px; }
+            .features, .visit, .menu-preview { padding: 64px 24px; }
+            .menu-preview { padding: 64px 24px 72px; }
             .features__grid,
-            .menu-preview__grid { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
+            .menu-preview__grid { grid-template-columns: 1fr; gap: 22px; max-width: 400px; margin-left: auto; margin-right: auto; }
 
             .footer__grid { grid-template-columns: 1fr; text-align: center; }
             .footer__brand p { max-width: 100%; }
@@ -720,6 +808,70 @@
             .hero__actions .btn { width: 100%; justify-content: center; }
             .nav__actions .btn--outline { display: none; }
         }
+
+        /* ═══════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════ */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes blobFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(8px, -12px) scale(1.02); }
+            66% { transform: translate(-6px, 8px) scale(0.98); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-48px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(48px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Hero load-in: content from left, image from right */
+        .hero__tag { animation: slideInLeft .7s ease-out .15s both; }
+        .hero__title { animation: slideInLeft .75s ease-out .28s both; }
+        .hero__sub { animation: slideInLeft .7s ease-out .42s both; }
+        .hero__actions { animation: slideInLeft .7s ease-out .55s both; }
+        .hero__visual { animation: slideInRight .9s ease-out .35s both; }
+        .hero__blob--1 { animation: blobFloat 12s ease-in-out infinite; }
+        .hero__blob--2 { animation: blobFloat 15s ease-in-out infinite .5s; }
+        .hero__blob--3 { animation: blobFloat 10s ease-in-out infinite 1s; }
+
+        /* Nav subtle fade-in */
+        .nav { animation: fadeIn .5s ease-out; }
+
+        /* Scroll-triggered reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .65s ease-out, transform .65s ease-out;
+        }
+        .reveal.reveal--in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal__item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .5s ease-out, transform .5s ease-out;
+        }
+        .reveal.reveal--in-view .reveal__item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal.reveal--in-view .reveal__item:nth-child(1) { transition-delay: .05s; }
+        .reveal.reveal--in-view .reveal__item:nth-child(2) { transition-delay: .12s; }
+        .reveal.reveal--in-view .reveal__item:nth-child(3) { transition-delay: .19s; }
+        .reveal.reveal--in-view .reveal__item:nth-child(4) { transition-delay: .26s; }
+        .reveal.reveal--in-view .reveal__item:nth-child(5) { transition-delay: .33s; }
+        .reveal.reveal--in-view .reveal__item:nth-child(6) { transition-delay: .4s; }
     </style>
 </head>
 <body>
@@ -799,48 +951,21 @@
             </div>
         </div>
 
-        <!-- Visual collage -->
+        <!-- Coffee image -->
         <div class="hero__visual">
-            <!-- Tall left -->
-            <div class="hero__vis-item hero__vis-item--tall">
-                @if(!empty($settings['hero_image']))
-                    <img src="{{ asset('images/settings/' . $settings['hero_image']) }}" alt="Hero">
-                @else
-                    <div class="hero__vis-placeholder">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 8h1a4 4 0 110 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/>
-                            <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/>
-                        </svg>
-                    </div>
-                @endif
-                <div class="hero__float">
-                    <div class="hero__float-label">Est.</div>
-                    <div class="hero__float-val">Since 2020</div>
+            @if(!empty($settings['hero_image']))
+                <img src="{{ asset('images/settings/' . $settings['hero_image']) }}" alt="Coffee">
+            @else
+                <div class="hero__vis-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/>
+                        <line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/>
+                    </svg>
                 </div>
-            </div>
-            <!-- Top right -->
-            <div class="hero__vis-item">
-                @if(!empty($settings['feature_1_image']))
-                    <img src="{{ asset('images/settings/' . $settings['feature_1_image']) }}" alt="Feature">
-                @else
-                    <div class="hero__vis-placeholder">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-                        </svg>
-                    </div>
-                @endif
-            </div>
-            <!-- Bottom right -->
-            <div class="hero__vis-item">
-                @if(!empty($settings['feature_2_image']))
-                    <img src="{{ asset('images/settings/' . $settings['feature_2_image']) }}" alt="Feature">
-                @else
-                    <div class="hero__vis-placeholder">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
-                        </svg>
-                    </div>
-                @endif
+            @endif
+            <div class="hero__float">
+                <div class="hero__float-label">Est.</div>
+                <div class="hero__float-val">Since {{ $settings['established_year'] ?? '2020' }}</div>
             </div>
         </div>
     </div>
@@ -850,21 +975,21 @@
 <!-- ── Features ── -->
 @if(($settings['features_enabled'] ?? '1') == '1')
 <section class="features" id="features">
-    <div class="features__inner">
+    <div class="features__inner reveal" id="revealFeatures">
         <div class="sec-head">
-            <div class="sec-head__left">
+            <div class="sec-head__left reveal__item">
                 <div class="sec-tag">
                     <span class="sec-tag__line"></span>
                     <span class="sec-tag__text">Why Choose Us</span>
                 </div>
                 <h2 class="sec-head__title">{{ $settings['about_title'] ?? 'What makes us <em>different</em>' }}</h2>
             </div>
-            <p class="sec-head__right">{{ $settings['about_description'] ?? 'We pride ourselves on using only the finest ingredients, traditional recipes passed down through generations, and a passion for creating memorable experiences.' }}</p>
+            <p class="sec-head__right reveal__item">{{ $settings['about_description'] ?? 'We pride ourselves on using only the finest ingredients, traditional recipes passed down through generations, and a passion for creating memorable experiences.' }}</p>
         </div>
 
         <div class="features__grid">
             <!-- Card 1 -->
-            <div class="feat-card">
+            <div class="feat-card reveal__item">
                 <div class="feat-card__img {{ empty($settings['feature_1_image']) ? 'feat-card__img--ph' : '' }}">
                     @if(!empty($settings['feature_1_image']))
                         <img src="{{ asset('images/settings/' . $settings['feature_1_image']) }}" alt="{{ $settings['feature_1_title'] ?? 'Feature' }}">
@@ -885,7 +1010,7 @@
             </div>
 
             <!-- Card 2 -->
-            <div class="feat-card">
+            <div class="feat-card reveal__item">
                 <div class="feat-card__img {{ empty($settings['feature_2_image']) ? 'feat-card__img--ph' : '' }}">
                     @if(!empty($settings['feature_2_image']))
                         <img src="{{ asset('images/settings/' . $settings['feature_2_image']) }}" alt="{{ $settings['feature_2_title'] ?? 'Feature' }}">
@@ -906,7 +1031,7 @@
             </div>
 
             <!-- Card 3 -->
-            <div class="feat-card">
+            <div class="feat-card reveal__item">
                 <div class="feat-card__img {{ empty($settings['feature_3_image']) ? 'feat-card__img--ph' : '' }}">
                     @if(!empty($settings['feature_3_image']))
                         <img src="{{ asset('images/settings/' . $settings['feature_3_image']) }}" alt="{{ $settings['feature_3_title'] ?? 'Feature' }}">
@@ -933,9 +1058,9 @@
 <!-- ── Visit Us ── -->
 @if(($settings['visit_enabled'] ?? '1') == '1')
 <section class="visit" id="visit">
-    <div class="visit__inner">
+    <div class="visit__inner reveal" id="revealVisit">
         <!-- Image side -->
-        <div class="visit__img">
+        <div class="visit__img reveal__item">
             @if(!empty($settings['visit_image']))
                 <img src="{{ asset('images/settings/' . $settings['visit_image']) }}" alt="Visit Us">
             @else
@@ -952,7 +1077,7 @@
         </div>
 
         <!-- Content side -->
-        <div class="visit__content">
+        <div class="visit__content reveal__item">
             <div class="sec-tag">
                 <span class="sec-tag__line"></span>
                 <span class="sec-tag__text">Visit Us</span>
@@ -1012,22 +1137,22 @@
 <!-- ── Menu Preview ── -->
 @if(($settings['menu_preview_enabled'] ?? '1') == '1')
 <section class="menu-preview" id="menu">
-    <div class="menu-preview__inner">
+    <div class="menu-preview__inner reveal" id="revealMenu">
         <div class="sec-head">
-            <div class="sec-head__left">
+            <div class="sec-head__left reveal__item">
                 <div class="sec-tag">
                     <span class="sec-tag__line"></span>
                     <span class="sec-tag__text">Menu</span>
                 </div>
                 <h2 class="sec-head__title">A taste of <em>what awaits</em></h2>
             </div>
-            <p class="sec-head__right">Explore a curated selection of our freshly made favourites — from morning pastries to afternoon treats.</p>
+            <p class="sec-head__right reveal__item">Explore a curated selection of our freshly made favourites — from morning pastries to afternoon treats.</p>
         </div>
 
         @if($featuredItems->count() > 0)
             <div class="menu-preview__grid">
                 @foreach($featuredItems as $item)
-                <div class="menu-card">
+                <div class="menu-card reveal__item">
                     <div class="menu-card__img {{ $item->image ? '' : 'menu-card__img--ph' }}">
                         @if($item->image)
                             <img src="{{ asset('images/menu/' . $item->image) }}" alt="{{ $item->name }}">
@@ -1060,7 +1185,7 @@
                 @endforeach
             </div>
         @else
-            <div class="menu-preview__empty">
+            <div class="menu-preview__empty reveal__item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M17 8h1a4 4 0 110 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/>
                 </svg>
@@ -1069,7 +1194,7 @@
             </div>
         @endif
 
-        <div class="menu-preview__cta">
+        <div class="menu-preview__cta reveal__item">
             <a href="{{ route('menu.index') }}" class="btn btn--dark-lg">
                 View Full Menu
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1099,8 +1224,8 @@
                 <h4>Quick Links</h4>
                 <ul>
                     <li><a href="{{ route('menu.index') }}">Menu</a></li>
-                    <li><a href="#features">About Us</a></li>
-                    <li><a href="#visit">Contact</a></li>
+                    <li><a href="{{ route('welcome') }}#features">About Us</a></li>
+                    <li><a href="{{ route('welcome') }}#visit">Contact</a></li>
                 </ul>
             </div>
 
@@ -1136,12 +1261,24 @@
     </div>
 </footer>
 
-<!-- Subtle nav scroll shadow -->
+<!-- Subtle nav scroll shadow + scroll-triggered reveal -->
 <script>
     const nav = document.getElementById('mainNav');
     window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 20);
     });
+
+    (function() {
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal--in-view');
+                }
+            });
+        }, { rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
+        reveals.forEach(function(el) { observer.observe(el); });
+    })();
 </script>
 
 </body>
